@@ -1,7 +1,7 @@
 from torch import nn
 from mmcv.cnn import ConvModule
 import torch
-from mmseg.ops import Upsample
+from mmseg.models.utils import Upsample
 from timm.models.layers.cbam import *
 
 
@@ -96,6 +96,7 @@ class FcnDecoder(nn.Module):
             x = self.dw_block[i](x)
         x = self.drop(x)
         out = self.out_cache(x)
+
         out_x = self.out_x(out)
         out_y = self.out_y(out)
         out_z = self.out_z(out)

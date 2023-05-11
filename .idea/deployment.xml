@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="yhx21@10.103.12.50:9123 password" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData" autoUpload="Always" serverName="shoujie@10.8.14.231:22 password" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="yhx21@10.103.12.50:9123 password">
+      <paths name="shoujie@10.8.14.231:22 password">
         <serverdata>
           <mappings>
-            <mapping deploy="/media/disk2/yhx21_data/force_map_new" local="$PROJECT_DIR$" />
+            <mapping deploy="/home/shoujie/Program/force_map_new" local="$PROJECT_DIR$" />
           </mappings>
-          <excludedPaths>
-            <excludedPath local="true" path="$PROJECT_DIR$/output" />
-            <excludedPath local="true" path="$PROJECT_DIR$/src" />
-            <excludedPath local="true" path="$PROJECT_DIR$/stats" />
-            <excludedPath local="true" path="$PROJECT_DIR$/stats_10_5" />
-            <excludedPath local="true" path="$PROJECT_DIR$/stats_10_5_1" />
-            <excludedPath local="true" path="$PROJECT_DIR$/statsz" />
-            <excludedPath local="true" path="$PROJECT_DIR$/statsz_9_30" />
-          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>
