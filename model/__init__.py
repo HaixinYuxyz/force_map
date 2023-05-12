@@ -12,5 +12,7 @@ def get_network(network_name, logger):
         from .UNet.UNet import UNet
         net = UNet(in_channels=6, num_classes=3)
         return net
-
-    elif network_name == 'swinunet':
+    elif network_name == 'grconvnet':
+        from .grconvnet.grconvnet3 import GenerativeResnet
+        net = GenerativeResnet(input_channels=6)
+        return net

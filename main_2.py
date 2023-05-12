@@ -228,7 +228,7 @@ if __name__ == "__main__":
     num_workers = 0
     train_dataset_per = 1
     val_dataset_per = 1
-    net_name = 'transforce'  # transforce
+    net_name = 'unet'  # transforce
 
     dt = datetime.datetime.now().strftime('%y_%m_%d_%H_%M')
     save_folder = os.path.join('./output', dt + '_{}'.format(net_name))
@@ -238,7 +238,7 @@ if __name__ == "__main__":
         os.makedirs(stats_dir)
     logger = log_creater(stats_dir)
 
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
     dataset = ForceData(data_path)
 
     train_dataloader, val_dataloader = split_dataset(dataset, 0.9, batch_size, num_workers, train_dataset_per, val_dataset_per)

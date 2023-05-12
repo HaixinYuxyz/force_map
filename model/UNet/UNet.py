@@ -83,8 +83,8 @@ class UNet(nn.Module):
         self.up4 = Up(base_c * 2, base_c, bilinear)
         self.out_conv = OutConv(base_c, num_classes)
 
-    def forward(self, x):
-        # x = torch.cat((rgb, inf), dim=1)
+    def forward(self, rgb, inf):
+        x = torch.cat((rgb, inf), dim=1)
         x1 = self.in_conv(x)
         x2 = self.down1(x1)
         x3 = self.down2(x2)
