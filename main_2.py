@@ -228,7 +228,7 @@ if __name__ == "__main__":
     num_workers = 0
     train_dataset_per = 1
     val_dataset_per = 1
-    net_name = 'unet'  # transforce
+    net_name = 'swinunet'  # transforce
 
     dt = datetime.datetime.now().strftime('%y_%m_%d_%H_%M')
     save_folder = os.path.join('./output', dt + '_{}'.format(net_name))

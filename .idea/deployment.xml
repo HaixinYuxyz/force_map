@@ -5,11 +5,8 @@
       <paths name="shoujie@10.8.14.231:22 password">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/shoujie/Program/force_map_new" local="$PROJECT_DIR$" />
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
-          <excludedPaths>
-            <excludedPath path="/home/shoujie/Program/force_map_new/output" />
-          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>

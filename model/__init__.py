@@ -16,3 +16,19 @@ def get_network(network_name, logger):
         from .grconvnet.grconvnet3 import GenerativeResnet
         net = GenerativeResnet(input_channels=6)
         return net
+    elif network_name == 'resnet':
+        from .ResNet_FCN.resnet_fcn import resnet_fcn
+        net = resnet_fcn()
+        return net
+    elif network_name == 'swinunet':
+        from .SwinUnet.vision_transformer import SwinUnet
+        from .SwinUnet.train import get_all_config
+        args, config = get_all_config()
+        net = SwinUnet(config, img_size=args.img_size, num_classes=args.num_classes)
+        return net
+    elif network_name == 'fuseswinunet':
+        from .Fuse_Swinunet.vision_transformer import SwinUnet
+        from .Fuse_Swinunet.train import get_all_config
+        args, config = get_all_config()
+        net = SwinUnet(config, img_size=args.img_size, num_classes=args.num_classes)
+        return net

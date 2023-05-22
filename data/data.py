@@ -212,9 +212,9 @@ class ForceData(Dataset):
 
     def __getitem__(self, index):
 
-        inf = cv2.resize(cv2.imread(self.inf[index]), (256, 256))
-        rgb = cv2.resize(cv2.imread(self.rgb[index]), (256, 256))
-        mask = cv2.resize(cv2.imread(self.lable[index], cv2.IMREAD_GRAYSCALE), (256, 256)) / 255.
+        inf = cv2.resize(cv2.imread(self.inf[index]), (224, 224))
+        rgb = cv2.resize(cv2.imread(self.rgb[index]), (224, 224))
+        mask = cv2.resize(cv2.imread(self.lable[index], cv2.IMREAD_GRAYSCALE), (224, 224)) / 255.
 
         # mask = SegmentationMapsOnImage(mask, shape=inf.shape)
         # inf, mask = self.transform(image=inf, segmentation_maps=mask)

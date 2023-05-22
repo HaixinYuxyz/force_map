@@ -45,11 +45,13 @@ class SwinUnet(nn.Module):
                                             patch_norm=config.MODEL.SWIN.PATCH_NORM,
                                             use_checkpoint=config.TRAIN.USE_CHECKPOINT)
 
-    def forward(self, x):
-        if x.size()[1] == 1:
-            x = x.repeat(1, 3, 1, 1)
+    def forward(self, rgb, inf):
+        x = torch.cat((rgb, inf), dim=1)
         logits = self.swin_unet(x)
-        return logits
+        out_x = logits[:, 0, :, :].unsqueeze(1)
+        out_y = logits[:, 1, :, :].unsqueeze(1)
+        out_z = logits[:, 2, :, :].unsqueeze(1)
+        return (out_x, out_y, out_z)
 
     def load_from(self, config):
         pretrained_path = config.MODEL.PRETRAIN_CKPT
@@ -87,4 +89,3 @@ class SwinUnet(nn.Module):
             # print(msg)
         else:
             print("none pretrain")
-

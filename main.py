@@ -68,8 +68,8 @@ def train(net, criterion, train_dataloader, valid_dataloader, device, batch_size
     net.to(device)
 
     optimizer = torch.optim.AdamW((param for param in net.parameters() if param.requires_grad), lr=lr, betas=(0.9, 0.999), weight_decay=0.01)
-    warm_up_with_multistep_lr = lambda epoch: epoch / (20 * 150) if epoch <= (20 * 150) else 0.4 ** len(
-        [m for m in [40 * 150, 60 * 150, 80 * 150, 90 * 150] if m <= epoch])
+    warm_up_with_multistep_lr = lambda epoch: epoch / (20 * 225) if epoch <= (20 * 225) else 0.4 ** len(
+        [m for m in [40 * 225, 60 * 225, 80 * 225, 90 * 225] if m <= epoch])
     scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=warm_up_with_multistep_lr)
 
     tb = tensorboardX.SummaryWriter(stats_dir)
@@ -220,7 +220,7 @@ if __name__ == "__main__":
     torch.cuda.manual_seed_all(42)
     data_path = "dataset/force_mask"
     checkout_path = "backbones/cifar10_swin_t_deformable_best_model_backbone.pt"
-    batch_size = 36
+    batch_size = 24
     img_shape = (256, 256)
     epoch = 100
     lr = 0.001
@@ -228,7 +228,7 @@ if __name__ == "__main__":
     num_workers = 0
     train_dataset_per = 1
     val_dataset_per = 1
-    net_name = 'transforce'  # transforce
+    net_name = 'fuseswinunet'  # transforce
 
     dt = datetime.datetime.now().strftime('%y_%m_%d_%H_%M')
     save_folder = os.path.join('./output', dt + '_{}'.format(net_name))
