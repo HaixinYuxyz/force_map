@@ -1,0 +1,607 @@
+[2023-05-12 11:17:35] {main_2.py:248} INFO - UNet(
+  (in_conv): DoubleConv(
+    (0): Conv2d(6, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+    (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU(inplace=True)
+  )
+  (down1): Down(
+    (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (1): DoubleConv(
+      (0): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+      (3): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (4): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (5): ReLU(inplace=True)
+    )
+  )
+  (down2): Down(
+    (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (1): DoubleConv(
+      (0): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+      (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (5): ReLU(inplace=True)
+    )
+  )
+  (down3): Down(
+    (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (1): DoubleConv(
+      (0): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+      (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (5): ReLU(inplace=True)
+    )
+  )
+  (down4): Down(
+    (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (1): DoubleConv(
+      (0): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+      (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (5): ReLU(inplace=True)
+    )
+  )
+  (up1): Up(
+    (up): Upsample(scale_factor=2.0, mode=bilinear)
+    (conv): DoubleConv(
+      (0): Conv2d(1024, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+      (3): Conv2d(512, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (5): ReLU(inplace=True)
+    )
+  )
+  (up2): Up(
+    (up): Upsample(scale_factor=2.0, mode=bilinear)
+    (conv): DoubleConv(
+      (0): Conv2d(512, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+      (3): Conv2d(256, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (4): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (5): ReLU(inplace=True)
+    )
+  )
+  (up3): Up(
+    (up): Upsample(scale_factor=2.0, mode=bilinear)
+    (conv): DoubleConv(
+      (0): Conv2d(256, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+      (3): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (5): ReLU(inplace=True)
+    )
+  )
+  (up4): Up(
+    (up): Upsample(scale_factor=2.0, mode=bilinear)
+    (conv): DoubleConv(
+      (0): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+      (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (5): ReLU(inplace=True)
+    )
+  )
+  (out_conv): OutConv(
+    (0): Conv2d(64, 3, kernel_size=(1, 1), stride=(1, 1))
+  )
+)
+[2023-05-12 11:20:34] {main_2.py:169} INFO - save best pth in epoch: 0
+[2023-05-12 11:20:34] {main_2.py:170} INFO - Best error mean:0.46304192284122103.  Error mean now:0.46304192284122103
+[2023-05-12 11:20:34] {main_2.py:174} INFO - save pth in epoch: 0
+[2023-05-12 11:20:34] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0167 Acc X 0.1: 0.0517
+[2023-05-12 11:20:34] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.1900 Acc Y 0.1: 0.4217
+[2023-05-12 11:20:34] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.4717 Acc Z 0.1: 0.7900
+[2023-05-12 11:23:25] {main_2.py:170} INFO - Best error mean:0.46304192284122103.  Error mean now:0.7322205394630632
+[2023-05-12 11:23:25] {main_2.py:174} INFO - save pth in epoch: 1
+[2023-05-12 11:23:25] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0783 Acc X 0.1: 0.2467
+[2023-05-12 11:23:25] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-12 11:23:25] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0483 Acc Z 0.1: 0.1900
+[2023-05-12 11:26:15] {main_2.py:169} INFO - save best pth in epoch: 2
+[2023-05-12 11:26:15] {main_2.py:170} INFO - Best error mean:0.23019050649522493.  Error mean now:0.23019050649522493
+[2023-05-12 11:26:15] {main_2.py:174} INFO - save pth in epoch: 2
+[2023-05-12 11:26:15] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.5767 Acc X 0.1: 0.9200
+[2023-05-12 11:26:15] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6550 Acc Y 0.1: 0.9383
+[2023-05-12 11:26:15] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0500 Acc Z 0.1: 0.1883
+[2023-05-12 11:29:04] {main_2.py:170} INFO - Best error mean:0.23019050649522493.  Error mean now:0.32709317577537145
+[2023-05-12 11:29:04] {main_2.py:174} INFO - save pth in epoch: 3
+[2023-05-12 11:29:04] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8100 Acc X 0.1: 0.9800
+[2023-05-12 11:29:04] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8050 Acc Y 0.1: 0.9800
+[2023-05-12 11:29:04] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0017 Acc Z 0.1: 0.0050
+[2023-05-12 11:31:52] {main_2.py:170} INFO - Best error mean:0.23019050649522493.  Error mean now:0.2889112589756648
+[2023-05-12 11:31:52] {main_2.py:174} INFO - save pth in epoch: 4
+[2023-05-12 11:31:52] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0133 Acc X 0.1: 0.1250
+[2023-05-12 11:31:53] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.1317 Acc Y 0.1: 0.6083
+[2023-05-12 11:31:53] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.4983 Acc Z 0.1: 0.8483
+[2023-05-12 11:34:39] {main_2.py:170} INFO - Best error mean:0.23019050649522493.  Error mean now:0.25045189986005423
+[2023-05-12 11:34:39] {main_2.py:174} INFO - save pth in epoch: 5
+[2023-05-12 11:34:39] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.1250 Acc X 0.1: 0.5617
+[2023-05-12 11:34:39] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6850 Acc Y 0.1: 0.9283
+[2023-05-12 11:34:39] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.2167 Acc Z 0.1: 0.4600
+[2023-05-12 11:37:26] {main_2.py:170} INFO - Best error mean:0.23019050649522493.  Error mean now:0.4324335478618741
+[2023-05-12 11:37:26] {main_2.py:174} INFO - save pth in epoch: 6
+[2023-05-12 11:37:26] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0167 Acc X 0.1: 0.1700
+[2023-05-12 11:37:26] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0250 Acc Y 0.1: 0.0750
+[2023-05-12 11:37:26] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.1433 Acc Z 0.1: 0.4383
+[2023-05-12 11:40:12] {main_2.py:170} INFO - Best error mean:0.23019050649522493.  Error mean now:0.3289209157290558
+[2023-05-12 11:40:12] {main_2.py:174} INFO - save pth in epoch: 7
+[2023-05-12 11:40:12] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9033 Acc X 0.1: 0.9917
+[2023-05-12 11:40:12] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0367
+[2023-05-12 11:40:13] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.1267 Acc Z 0.1: 0.3600
+[2023-05-12 11:42:58] {main_2.py:170} INFO - Best error mean:0.23019050649522493.  Error mean now:0.36307889423721157
+[2023-05-12 11:42:58] {main_2.py:174} INFO - save pth in epoch: 8
+[2023-05-12 11:42:58] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.5250 Acc X 0.1: 0.8650
+[2023-05-12 11:42:58] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0000 Acc Y 0.1: 0.0000
+[2023-05-12 11:42:58] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.7100 Acc Z 0.1: 0.9533
+[2023-05-12 11:45:42] {main_2.py:169} INFO - save best pth in epoch: 9
+[2023-05-12 11:45:42] {main_2.py:170} INFO - Best error mean:0.21094623464625328.  Error mean now:0.21094623464625328
+[2023-05-12 11:45:43] {main_2.py:174} INFO - save pth in epoch: 9
+[2023-05-12 11:45:43] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.7550 Acc X 0.1: 0.9967
+[2023-05-12 11:45:43] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.1583 Acc Y 0.1: 0.6650
+[2023-05-12 11:45:43] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.2633 Acc Z 0.1: 0.6100
+[2023-05-12 11:48:27] {main_2.py:170} INFO - Best error mean:0.21094623464625328.  Error mean now:0.33230062013491984
+[2023-05-12 11:48:27] {main_2.py:174} INFO - save pth in epoch: 10
+[2023-05-12 11:48:27] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0000 Acc X 0.1: 0.0050
+[2023-05-12 11:48:28] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.3900 Acc Y 0.1: 0.8833
+[2023-05-12 11:48:28] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.3767 Acc Z 0.1: 0.7733
+[2023-05-12 11:51:11] {main_2.py:170} INFO - Best error mean:0.21094623464625328.  Error mean now:0.2811367044659952
+[2023-05-12 11:51:11] {main_2.py:174} INFO - save pth in epoch: 11
+[2023-05-12 11:51:12] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0900 Acc X 0.1: 0.3433
+[2023-05-12 11:51:12] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.2967 Acc Y 0.1: 0.6883
+[2023-05-12 11:51:12] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.3567 Acc Z 0.1: 0.7183
+[2023-05-12 11:53:57] {main_2.py:169} INFO - save best pth in epoch: 12
+[2023-05-12 11:53:57] {main_2.py:170} INFO - Best error mean:0.15927462743983295.  Error mean now:0.15927462743983295
+[2023-05-12 11:53:57] {main_2.py:174} INFO - save pth in epoch: 12
+[2023-05-12 11:53:57] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8500 Acc X 0.1: 0.9950
+[2023-05-12 11:53:57] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6350 Acc Y 0.1: 0.8833
+[2023-05-12 11:53:57] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.2517 Acc Z 0.1: 0.6517
+[2023-05-12 11:56:39] {main_2.py:170} INFO - Best error mean:0.15927462743983295.  Error mean now:0.28068855256773534
+[2023-05-12 11:56:39] {main_2.py:174} INFO - save pth in epoch: 13
+[2023-05-12 11:56:39] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0367
+[2023-05-12 11:56:40] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.5367 Acc Y 0.1: 0.9483
+[2023-05-12 11:56:40] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.2700 Acc Z 0.1: 0.7317
+[2023-05-12 11:59:23] {main_2.py:170} INFO - Best error mean:0.15927462743983295.  Error mean now:0.22671216481830925
+[2023-05-12 11:59:23] {main_2.py:174} INFO - save pth in epoch: 14
+[2023-05-12 11:59:23] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.6750 Acc X 0.1: 0.9800
+[2023-05-12 11:59:23] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.4433 Acc Y 0.1: 0.8400
+[2023-05-12 11:59:23] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.1367 Acc Z 0.1: 0.3533
+[2023-05-12 12:02:07] {main_2.py:170} INFO - Best error mean:0.15927462743983295.  Error mean now:0.30141262164960303
+[2023-05-12 12:02:07] {main_2.py:174} INFO - save pth in epoch: 15
+[2023-05-12 12:02:07] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.1383
+[2023-05-12 12:02:07] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.1150 Acc Y 0.1: 0.4233
+[2023-05-12 12:02:08] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.7100 Acc Z 0.1: 0.9517
+[2023-05-12 12:04:52] {main_2.py:170} INFO - Best error mean:0.15927462743983295.  Error mean now:0.27562365542398765
+[2023-05-12 12:04:52] {main_2.py:174} INFO - save pth in epoch: 16
+[2023-05-12 12:04:52] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.5383 Acc X 0.1: 0.8367
+[2023-05-12 12:04:52] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.1617 Acc Y 0.1: 0.3733
+[2023-05-12 12:04:52] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.1950 Acc Z 0.1: 0.4417
+[2023-05-12 12:07:34] {main_2.py:170} INFO - Best error mean:0.15927462743983295.  Error mean now:0.31883203519508246
+[2023-05-12 12:07:34] {main_2.py:174} INFO - save pth in epoch: 17
+[2023-05-12 12:07:34] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0283 Acc X 0.1: 0.1500
+[2023-05-12 12:07:34] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.3150 Acc Y 0.1: 0.7350
+[2023-05-12 12:07:34] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.3033 Acc Z 0.1: 0.6950
+[2023-05-12 12:10:16] {main_2.py:170} INFO - Best error mean:0.15927462743983295.  Error mean now:0.4054966610763222
+[2023-05-12 12:10:16] {main_2.py:174} INFO - save pth in epoch: 18
+[2023-05-12 12:10:16] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.1933 Acc X 0.1: 0.4700
+[2023-05-12 12:10:16] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.2533 Acc Y 0.1: 0.5883
+[2023-05-12 12:10:16] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0100
+[2023-05-12 12:12:58] {main_2.py:170} INFO - Best error mean:0.15927462743983295.  Error mean now:0.20429259936325256
+[2023-05-12 12:12:58] {main_2.py:174} INFO - save pth in epoch: 19
+[2023-05-12 12:12:58] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.2967 Acc X 0.1: 0.5800
+[2023-05-12 12:12:58] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.2700 Acc Y 0.1: 0.8517
+[2023-05-12 12:12:58] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6317 Acc Z 0.1: 0.9367
+[2023-05-12 12:15:40] {main_2.py:170} INFO - Best error mean:0.15927462743983295.  Error mean now:0.2724365767122557
+[2023-05-12 12:15:40] {main_2.py:174} INFO - save pth in epoch: 20
+[2023-05-12 12:15:40] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.3917 Acc X 0.1: 0.8367
+[2023-05-12 12:15:41] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6050 Acc Y 0.1: 0.8683
+[2023-05-12 12:15:41] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.1617
+[2023-05-12 12:18:22] {main_2.py:170} INFO - Best error mean:0.15927462743983295.  Error mean now:0.2851211240204672
+[2023-05-12 12:18:22] {main_2.py:174} INFO - save pth in epoch: 21
+[2023-05-12 12:18:22] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0750 Acc X 0.1: 0.1683
+[2023-05-12 12:18:22] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6417 Acc Y 0.1: 0.9433
+[2023-05-12 12:18:22] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.4917 Acc Z 0.1: 0.8517
+[2023-05-12 12:21:05] {main_2.py:170} INFO - Best error mean:0.15927462743983295.  Error mean now:0.19069586515737075
+[2023-05-12 12:21:05] {main_2.py:174} INFO - save pth in epoch: 22
+[2023-05-12 12:21:05] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.6450 Acc X 0.1: 0.9883
+[2023-05-12 12:21:05] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.4217 Acc Y 0.1: 0.8367
+[2023-05-12 12:21:05] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.1850 Acc Z 0.1: 0.6283
+[2023-05-12 12:23:47] {main_2.py:169} INFO - save best pth in epoch: 23
+[2023-05-12 12:23:47] {main_2.py:170} INFO - Best error mean:0.12384808054504295.  Error mean now:0.12384808054504295
+[2023-05-12 12:23:47] {main_2.py:174} INFO - save pth in epoch: 23
+[2023-05-12 12:23:47] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8233 Acc X 0.1: 0.9850
+[2023-05-12 12:23:47] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6433 Acc Y 0.1: 0.9017
+[2023-05-12 12:23:47] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5750 Acc Z 0.1: 0.9017
+[2023-05-12 12:26:28] {main_2.py:170} INFO - Best error mean:0.12384808054504295.  Error mean now:0.23063188054598865
+[2023-05-12 12:26:28] {main_2.py:174} INFO - save pth in epoch: 24
+[2023-05-12 12:26:28] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.1417 Acc X 0.1: 0.5700
+[2023-05-12 12:26:29] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6217 Acc Y 0.1: 0.9500
+[2023-05-12 12:26:29] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.1967 Acc Z 0.1: 0.5983
+[2023-05-12 12:29:09] {main_2.py:170} INFO - Best error mean:0.12384808054504295.  Error mean now:0.17213251985299094
+[2023-05-12 12:29:09] {main_2.py:174} INFO - save pth in epoch: 25
+[2023-05-12 12:29:09] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.1900 Acc X 0.1: 0.6233
+[2023-05-12 12:29:10] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8200 Acc Y 0.1: 0.9950
+[2023-05-12 12:29:10] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6100 Acc Z 0.1: 0.9233
+[2023-05-12 12:31:52] {main_2.py:170} INFO - Best error mean:0.12384808054504295.  Error mean now:0.24854335556427637
+[2023-05-12 12:31:52] {main_2.py:174} INFO - save pth in epoch: 26
+[2023-05-12 12:31:52] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0767 Acc X 0.1: 0.2750
+[2023-05-12 12:31:52] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.3633 Acc Y 0.1: 0.7883
+[2023-05-12 12:31:52] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.4933 Acc Z 0.1: 0.8617
+[2023-05-12 12:34:34] {main_2.py:170} INFO - Best error mean:0.12384808054504295.  Error mean now:0.15594049205072225
+[2023-05-12 12:34:34] {main_2.py:174} INFO - save pth in epoch: 27
+[2023-05-12 12:34:34] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.7550 Acc X 0.1: 0.9383
+[2023-05-12 12:34:34] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.4600 Acc Y 0.1: 0.8117
+[2023-05-12 12:34:34] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.4733 Acc Z 0.1: 0.8450
+[2023-05-12 12:37:15] {main_2.py:170} INFO - Best error mean:0.12384808054504295.  Error mean now:0.13083613269574318
+[2023-05-12 12:37:15] {main_2.py:174} INFO - save pth in epoch: 28
+[2023-05-12 12:37:15] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.6317 Acc X 0.1: 0.9967
+[2023-05-12 12:37:15] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6467 Acc Y 0.1: 0.9683
+[2023-05-12 12:37:16] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5917 Acc Z 0.1: 0.8883
+[2023-05-12 12:39:55] {main_2.py:170} INFO - Best error mean:0.12384808054504295.  Error mean now:0.22677955185994508
+[2023-05-12 12:39:55] {main_2.py:174} INFO - save pth in epoch: 29
+[2023-05-12 12:39:56] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.4433 Acc X 0.1: 0.9583
+[2023-05-12 12:39:56] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.1467 Acc Y 0.1: 0.4233
+[2023-05-12 12:39:56] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.4667 Acc Z 0.1: 0.8000
+[2023-05-12 12:42:37] {main_2.py:170} INFO - Best error mean:0.12384808054504295.  Error mean now:0.1602134632055337
+[2023-05-12 12:42:37] {main_2.py:174} INFO - save pth in epoch: 30
+[2023-05-12 12:42:37] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.4900 Acc X 0.1: 0.8867
+[2023-05-12 12:42:37] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6317 Acc Y 0.1: 0.9667
+[2023-05-12 12:42:37] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.4433 Acc Z 0.1: 0.8450
+[2023-05-12 12:45:19] {main_2.py:170} INFO - Best error mean:0.12384808054504295.  Error mean now:0.15371646144155723
+[2023-05-12 12:45:19] {main_2.py:174} INFO - save pth in epoch: 31
+[2023-05-12 12:45:19] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8550 Acc X 0.1: 0.9983
+[2023-05-12 12:45:19] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.1517 Acc Y 0.1: 0.7100
+[2023-05-12 12:45:19] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6350 Acc Z 0.1: 0.9233
+[2023-05-12 12:48:01] {main_2.py:170} INFO - Best error mean:0.12384808054504295.  Error mean now:0.19254023461757847
+[2023-05-12 12:48:01] {main_2.py:174} INFO - save pth in epoch: 32
+[2023-05-12 12:48:01] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.7567 Acc X 0.1: 0.9983
+[2023-05-12 12:48:01] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.3233 Acc Y 0.1: 0.7400
+[2023-05-12 12:48:01] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.2400 Acc Z 0.1: 0.6467
+[2023-05-12 12:50:42] {main_2.py:170} INFO - Best error mean:0.12384808054504295.  Error mean now:0.15821765541797506
+[2023-05-12 12:50:42] {main_2.py:174} INFO - save pth in epoch: 33
+[2023-05-12 12:50:42] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8383 Acc X 0.1: 1.0000
+[2023-05-12 12:50:42] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.2283 Acc Y 0.1: 0.7433
+[2023-05-12 12:50:42] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5283 Acc Z 0.1: 0.8867
+[2023-05-12 12:53:23] {main_2.py:170} INFO - Best error mean:0.12384808054504295.  Error mean now:0.1868485359164576
+[2023-05-12 12:53:23] {main_2.py:174} INFO - save pth in epoch: 34
+[2023-05-12 12:53:23] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.1533 Acc X 0.1: 0.5717
+[2023-05-12 12:53:24] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.7600 Acc Y 0.1: 0.9833
+[2023-05-12 12:53:24] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5000 Acc Z 0.1: 0.8167
+[2023-05-12 12:56:05] {main_2.py:170} INFO - Best error mean:0.12384808054504295.  Error mean now:0.15239693100137325
+[2023-05-12 12:56:05] {main_2.py:174} INFO - save pth in epoch: 35
+[2023-05-12 12:56:05] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.7833 Acc X 0.1: 0.9850
+[2023-05-12 12:56:05] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6717 Acc Y 0.1: 0.9650
+[2023-05-12 12:56:05] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.2483 Acc Z 0.1: 0.7000
+[2023-05-12 12:58:48] {main_2.py:170} INFO - Best error mean:0.12384808054504295.  Error mean now:0.18043477097215752
+[2023-05-12 12:58:48] {main_2.py:174} INFO - save pth in epoch: 36
+[2023-05-12 12:58:48] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.2417 Acc X 0.1: 0.8300
+[2023-05-12 12:58:48] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.7433 Acc Y 0.1: 0.9850
+[2023-05-12 12:58:48] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.3850 Acc Z 0.1: 0.7167
+[2023-05-12 13:01:28] {main_2.py:170} INFO - Best error mean:0.12384808054504295.  Error mean now:0.1400726061151363
+[2023-05-12 13:01:29] {main_2.py:174} INFO - save pth in epoch: 37
+[2023-05-12 13:01:29] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.6183 Acc X 0.1: 0.8617
+[2023-05-12 13:01:29] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.5817 Acc Y 0.1: 0.9700
+[2023-05-12 13:01:29] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5783 Acc Z 0.1: 0.8950
+[2023-05-12 13:04:09] {main_2.py:170} INFO - Best error mean:0.12384808054504295.  Error mean now:0.17046985668595882
+[2023-05-12 13:04:09] {main_2.py:174} INFO - save pth in epoch: 38
+[2023-05-12 13:04:09] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.6150 Acc X 0.1: 0.9767
+[2023-05-12 13:04:10] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6767 Acc Y 0.1: 0.9817
+[2023-05-12 13:04:10] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.3233 Acc Z 0.1: 0.6233
+[2023-05-12 13:06:50] {main_2.py:170} INFO - Best error mean:0.12384808054504295.  Error mean now:0.21838094404898584
+[2023-05-12 13:06:50] {main_2.py:174} INFO - save pth in epoch: 39
+[2023-05-12 13:06:50] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.1400 Acc X 0.1: 0.6683
+[2023-05-12 13:06:50] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.5583 Acc Y 0.1: 0.9350
+[2023-05-12 13:06:50] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.2300 Acc Z 0.1: 0.7000
+[2023-05-12 13:09:31] {main_2.py:169} INFO - save best pth in epoch: 40
+[2023-05-12 13:09:31] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.08236532839092736
+[2023-05-12 13:09:31] {main_2.py:174} INFO - save pth in epoch: 40
+[2023-05-12 13:09:31] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9783 Acc X 0.1: 1.0000
+[2023-05-12 13:09:31] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8400 Acc Y 0.1: 0.9950
+[2023-05-12 13:09:31] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.7633 Acc Z 0.1: 0.9617
+[2023-05-12 13:12:11] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.09964898723177612
+[2023-05-12 13:12:11] {main_2.py:174} INFO - save pth in epoch: 41
+[2023-05-12 13:12:11] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8333 Acc X 0.1: 1.0000
+[2023-05-12 13:12:11] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6950 Acc Y 0.1: 0.9917
+[2023-05-12 13:12:11] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.7817 Acc Z 0.1: 0.9750
+[2023-05-12 13:14:51] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.10399146623443811
+[2023-05-12 13:14:51] {main_2.py:174} INFO - save pth in epoch: 42
+[2023-05-12 13:14:51] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.6600 Acc X 0.1: 0.9983
+[2023-05-12 13:14:51] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.9450 Acc Y 0.1: 0.9983
+[2023-05-12 13:14:51] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6633 Acc Z 0.1: 0.9233
+[2023-05-12 13:17:32] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.11552796732013423
+[2023-05-12 13:17:32] {main_2.py:174} INFO - save pth in epoch: 43
+[2023-05-12 13:17:32] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8133 Acc X 0.1: 1.0000
+[2023-05-12 13:17:32] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.7633 Acc Y 0.1: 0.9917
+[2023-05-12 13:17:32] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6333 Acc Z 0.1: 0.9367
+[2023-05-12 13:20:14] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.09084291887741225
+[2023-05-12 13:20:14] {main_2.py:174} INFO - save pth in epoch: 44
+[2023-05-12 13:20:14] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9800 Acc X 0.1: 1.0000
+[2023-05-12 13:20:14] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.7233 Acc Y 0.1: 0.9933
+[2023-05-12 13:20:14] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.7400 Acc Z 0.1: 0.9567
+[2023-05-12 13:22:54] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.12438556949297586
+[2023-05-12 13:22:55] {main_2.py:174} INFO - save pth in epoch: 45
+[2023-05-12 13:22:55] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8083 Acc X 0.1: 1.0000
+[2023-05-12 13:22:55] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.4567 Acc Y 0.1: 0.9933
+[2023-05-12 13:22:55] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6617 Acc Z 0.1: 0.9217
+[2023-05-12 13:25:36] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.09568800853216089
+[2023-05-12 13:25:36] {main_2.py:174} INFO - save pth in epoch: 46
+[2023-05-12 13:25:36] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.7817 Acc X 0.1: 1.0000
+[2023-05-12 13:25:36] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8983 Acc Y 0.1: 0.9967
+[2023-05-12 13:25:37] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.7083 Acc Z 0.1: 0.9617
+[2023-05-12 13:28:16] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.09781457963205564
+[2023-05-12 13:28:16] {main_2.py:174} INFO - save pth in epoch: 47
+[2023-05-12 13:28:16] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9567 Acc X 0.1: 1.0000
+[2023-05-12 13:28:16] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8350 Acc Y 0.1: 0.9950
+[2023-05-12 13:28:17] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5883 Acc Z 0.1: 0.9400
+[2023-05-12 13:30:58] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.11715704786940477
+[2023-05-12 13:30:58] {main_2.py:174} INFO - save pth in epoch: 48
+[2023-05-12 13:30:58] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.7917 Acc X 0.1: 0.9900
+[2023-05-12 13:30:58] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6100 Acc Y 0.1: 0.9917
+[2023-05-12 13:30:58] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6600 Acc Z 0.1: 0.9500
+[2023-05-12 13:33:38] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.17879847569080692
+[2023-05-12 13:33:38] {main_2.py:174} INFO - save pth in epoch: 49
+[2023-05-12 13:33:38] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.6900 Acc X 0.1: 1.0000
+[2023-05-12 13:33:38] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.4067 Acc Y 0.1: 0.8483
+[2023-05-12 13:33:38] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.2450 Acc Z 0.1: 0.7300
+[2023-05-12 13:36:20] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.17143065974659596
+[2023-05-12 13:36:20] {main_2.py:174} INFO - save pth in epoch: 50
+[2023-05-12 13:36:20] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8333 Acc X 0.1: 1.0000
+[2023-05-12 13:36:20] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.1833 Acc Y 0.1: 0.8033
+[2023-05-12 13:36:20] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.3750 Acc Z 0.1: 0.8317
+[2023-05-12 13:39:00] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.1023289038054645
+[2023-05-12 13:39:00] {main_2.py:174} INFO - save pth in epoch: 51
+[2023-05-12 13:39:00] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8967 Acc X 0.1: 1.0000
+[2023-05-12 13:39:00] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6383 Acc Y 0.1: 0.9600
+[2023-05-12 13:39:00] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.7650 Acc Z 0.1: 0.9800
+[2023-05-12 13:41:42] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.11397476666218911
+[2023-05-12 13:41:42] {main_2.py:174} INFO - save pth in epoch: 52
+[2023-05-12 13:41:42] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9150 Acc X 0.1: 1.0000
+[2023-05-12 13:41:42] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6900 Acc Y 0.1: 0.9867
+[2023-05-12 13:41:42] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5167 Acc Z 0.1: 0.8867
+[2023-05-12 13:44:22] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.11455184097285383
+[2023-05-12 13:44:22] {main_2.py:174} INFO - save pth in epoch: 53
+[2023-05-12 13:44:22] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8350 Acc X 0.1: 1.0000
+[2023-05-12 13:44:22] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6300 Acc Y 0.1: 0.9867
+[2023-05-12 13:44:22] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6683 Acc Z 0.1: 0.9433
+[2023-05-12 13:47:02] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.11678186536339732
+[2023-05-12 13:47:02] {main_2.py:174} INFO - save pth in epoch: 54
+[2023-05-12 13:47:02] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9667 Acc X 0.1: 1.0000
+[2023-05-12 13:47:02] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6067 Acc Y 0.1: 0.9733
+[2023-05-12 13:47:02] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5583 Acc Z 0.1: 0.8533
+[2023-05-12 13:49:42] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.15814650133562586
+[2023-05-12 13:49:42] {main_2.py:174} INFO - save pth in epoch: 55
+[2023-05-12 13:49:42] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.3617 Acc X 0.1: 0.8017
+[2023-05-12 13:49:42] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8350 Acc Y 0.1: 0.9967
+[2023-05-12 13:49:42] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.4417 Acc Z 0.1: 0.8067
+[2023-05-12 13:52:24] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.1443859601742588
+[2023-05-12 13:52:24] {main_2.py:174} INFO - save pth in epoch: 56
+[2023-05-12 13:52:24] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8100 Acc X 0.1: 0.9767
+[2023-05-12 13:52:24] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.4533 Acc Y 0.1: 0.9067
+[2023-05-12 13:52:24] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.4617 Acc Z 0.1: 0.8483
+[2023-05-12 13:55:04] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.10982375299247603
+[2023-05-12 13:55:04] {main_2.py:174} INFO - save pth in epoch: 57
+[2023-05-12 13:55:04] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.6483 Acc X 0.1: 0.9783
+[2023-05-12 13:55:04] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8267 Acc Y 0.1: 0.9967
+[2023-05-12 13:55:04] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6900 Acc Z 0.1: 0.9417
+[2023-05-12 13:57:45] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.13503705898998306
+[2023-05-12 13:57:45] {main_2.py:174} INFO - save pth in epoch: 58
+[2023-05-12 13:57:45] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8483 Acc X 0.1: 0.9983
+[2023-05-12 13:57:45] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.7717 Acc Y 0.1: 0.9850
+[2023-05-12 13:57:45] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.3450 Acc Z 0.1: 0.6933
+[2023-05-12 14:00:26] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.1685828683587412
+[2023-05-12 14:00:26] {main_2.py:174} INFO - save pth in epoch: 59
+[2023-05-12 14:00:26] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.5183 Acc X 0.1: 0.9783
+[2023-05-12 14:00:26] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.1450 Acc Y 0.1: 0.7517
+[2023-05-12 14:00:26] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6783 Acc Z 0.1: 0.9317
+[2023-05-12 14:03:06] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.09910296197359761
+[2023-05-12 14:03:07] {main_2.py:174} INFO - save pth in epoch: 60
+[2023-05-12 14:03:07] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9600 Acc X 0.1: 1.0000
+[2023-05-12 14:03:07] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8267 Acc Y 0.1: 0.9983
+[2023-05-12 14:03:07] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5767 Acc Z 0.1: 0.9400
+[2023-05-12 14:05:46] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.10956375339999794
+[2023-05-12 14:05:46] {main_2.py:174} INFO - save pth in epoch: 61
+[2023-05-12 14:05:46] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9267 Acc X 0.1: 1.0000
+[2023-05-12 14:05:47] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.7900 Acc Y 0.1: 0.9967
+[2023-05-12 14:05:47] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5617 Acc Z 0.1: 0.9233
+[2023-05-12 14:08:27] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.09148727309890092
+[2023-05-12 14:08:27] {main_2.py:174} INFO - save pth in epoch: 62
+[2023-05-12 14:08:27] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9583 Acc X 0.1: 1.0000
+[2023-05-12 14:08:27] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8667 Acc Y 0.1: 0.9967
+[2023-05-12 14:08:27] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.7117 Acc Z 0.1: 0.9483
+[2023-05-12 14:11:07] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.09938424360472708
+[2023-05-12 14:11:07] {main_2.py:174} INFO - save pth in epoch: 63
+[2023-05-12 14:11:07] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9483 Acc X 0.1: 1.0000
+[2023-05-12 14:11:07] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8917 Acc Y 0.1: 0.9983
+[2023-05-12 14:11:07] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5500 Acc Z 0.1: 0.9017
+[2023-05-12 14:13:48] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.11554759917547927
+[2023-05-12 14:13:48] {main_2.py:174} INFO - save pth in epoch: 64
+[2023-05-12 14:13:48] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9433 Acc X 0.1: 1.0000
+[2023-05-12 14:13:49] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.5450 Acc Y 0.1: 0.9850
+[2023-05-12 14:13:49] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6000 Acc Z 0.1: 0.9267
+[2023-05-12 14:16:28] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.10696152604340264
+[2023-05-12 14:16:28] {main_2.py:174} INFO - save pth in epoch: 65
+[2023-05-12 14:16:29] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8250 Acc X 0.1: 0.9983
+[2023-05-12 14:16:29] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.9283 Acc Y 0.1: 1.0000
+[2023-05-12 14:16:29] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5133 Acc Z 0.1: 0.8633
+[2023-05-12 14:19:09] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.10208161190229778
+[2023-05-12 14:19:09] {main_2.py:174} INFO - save pth in epoch: 66
+[2023-05-12 14:19:09] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8033 Acc X 0.1: 0.9967
+[2023-05-12 14:19:09] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8033 Acc Y 0.1: 0.9950
+[2023-05-12 14:19:10] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6717 Acc Z 0.1: 0.9417
+[2023-05-12 14:21:50] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.10941880386477958
+[2023-05-12 14:21:50] {main_2.py:174} INFO - save pth in epoch: 67
+[2023-05-12 14:21:50] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8383 Acc X 0.1: 1.0000
+[2023-05-12 14:21:50] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8433 Acc Y 0.1: 0.9967
+[2023-05-12 14:21:50] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5000 Acc Z 0.1: 0.8933
+[2023-05-12 14:24:30] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.10814737509936095
+[2023-05-12 14:24:30] {main_2.py:174} INFO - save pth in epoch: 68
+[2023-05-12 14:24:30] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9800 Acc X 0.1: 1.0000
+[2023-05-12 14:24:30] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6550 Acc Y 0.1: 0.9883
+[2023-05-12 14:24:30] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6317 Acc Z 0.1: 0.9217
+[2023-05-12 14:27:11] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.10929452323587611
+[2023-05-12 14:27:11] {main_2.py:174} INFO - save pth in epoch: 69
+[2023-05-12 14:27:11] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9000 Acc X 0.1: 1.0000
+[2023-05-12 14:27:11] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8083 Acc Y 0.1: 0.9950
+[2023-05-12 14:27:11] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.4867 Acc Z 0.1: 0.8900
+[2023-05-12 14:29:52] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.13947650257924882
+[2023-05-12 14:29:52] {main_2.py:174} INFO - save pth in epoch: 70
+[2023-05-12 14:29:52] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9533 Acc X 0.1: 1.0000
+[2023-05-12 14:29:52] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.3283 Acc Y 0.1: 0.9400
+[2023-05-12 14:29:52] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.4800 Acc Z 0.1: 0.8867
+[2023-05-12 14:32:32] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.09964093477154772
+[2023-05-12 14:32:32] {main_2.py:174} INFO - save pth in epoch: 71
+[2023-05-12 14:32:32] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8483 Acc X 0.1: 1.0000
+[2023-05-12 14:32:32] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.9500 Acc Y 0.1: 0.9983
+[2023-05-12 14:32:33] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6050 Acc Z 0.1: 0.9217
+[2023-05-12 14:35:13] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.11288924779898177
+[2023-05-12 14:35:13] {main_2.py:174} INFO - save pth in epoch: 72
+[2023-05-12 14:35:13] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8317 Acc X 0.1: 1.0000
+[2023-05-12 14:35:14] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.9033 Acc Y 0.1: 1.0000
+[2023-05-12 14:35:14] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.4567 Acc Z 0.1: 0.8433
+[2023-05-12 14:37:54] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.10617346250917761
+[2023-05-12 14:37:54] {main_2.py:174} INFO - save pth in epoch: 73
+[2023-05-12 14:37:54] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9067 Acc X 0.1: 1.0000
+[2023-05-12 14:37:54] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8083 Acc Y 0.1: 0.9967
+[2023-05-12 14:37:54] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5783 Acc Z 0.1: 0.8833
+[2023-05-12 14:40:35] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.1484350218002995
+[2023-05-12 14:40:35] {main_2.py:174} INFO - save pth in epoch: 74
+[2023-05-12 14:40:35] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.4333 Acc X 0.1: 0.9767
+[2023-05-12 14:40:35] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.7250 Acc Y 0.1: 0.9967
+[2023-05-12 14:40:35] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.4800 Acc Z 0.1: 0.8567
+[2023-05-12 14:43:18] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.11408710407248387
+[2023-05-12 14:43:18] {main_2.py:174} INFO - save pth in epoch: 75
+[2023-05-12 14:43:18] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.6817 Acc X 0.1: 0.9817
+[2023-05-12 14:43:18] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8767 Acc Y 0.1: 0.9950
+[2023-05-12 14:43:18] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5767 Acc Z 0.1: 0.9050
+[2023-05-12 14:46:02] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.09701140973406533
+[2023-05-12 14:46:02] {main_2.py:174} INFO - save pth in epoch: 76
+[2023-05-12 14:46:02] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8767 Acc X 0.1: 1.0000
+[2023-05-12 14:46:02] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.7867 Acc Y 0.1: 0.9967
+[2023-05-12 14:46:02] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.7400 Acc Z 0.1: 0.9517
+[2023-05-12 14:48:44] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.1183308817904132
+[2023-05-12 14:48:44] {main_2.py:174} INFO - save pth in epoch: 77
+[2023-05-12 14:48:44] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8200 Acc X 0.1: 1.0000
+[2023-05-12 14:48:44] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.7317 Acc Y 0.1: 0.9883
+[2023-05-12 14:48:45] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5550 Acc Z 0.1: 0.8750
+[2023-05-12 14:51:27] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.08929715024190954
+[2023-05-12 14:51:27] {main_2.py:174} INFO - save pth in epoch: 78
+[2023-05-12 14:51:27] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9433 Acc X 0.1: 1.0000
+[2023-05-12 14:51:27] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8733 Acc Y 0.1: 1.0000
+[2023-05-12 14:51:27] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6867 Acc Z 0.1: 0.9267
+[2023-05-12 14:54:09] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.0974572769412771
+[2023-05-12 14:54:09] {main_2.py:174} INFO - save pth in epoch: 79
+[2023-05-12 14:54:09] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8783 Acc X 0.1: 0.9983
+[2023-05-12 14:54:09] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8267 Acc Y 0.1: 0.9933
+[2023-05-12 14:54:09] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6783 Acc Z 0.1: 0.9400
+[2023-05-12 14:56:47] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.09690190437560281
+[2023-05-12 14:56:47] {main_2.py:174} INFO - save pth in epoch: 80
+[2023-05-12 14:56:47] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9700 Acc X 0.1: 1.0000
+[2023-05-12 14:56:47] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.7933 Acc Y 0.1: 0.9950
+[2023-05-12 14:56:48] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6800 Acc Z 0.1: 0.9517
+[2023-05-12 14:59:26] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.10598572407849133
+[2023-05-12 14:59:26] {main_2.py:174} INFO - save pth in epoch: 81
+[2023-05-12 14:59:26] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8533 Acc X 0.1: 1.0000
+[2023-05-12 14:59:26] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8367 Acc Y 0.1: 0.9983
+[2023-05-12 14:59:27] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6517 Acc Z 0.1: 0.9400
+[2023-05-12 15:02:07] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.09101847975359609
+[2023-05-12 15:02:07] {main_2.py:174} INFO - save pth in epoch: 82
+[2023-05-12 15:02:07] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9383 Acc X 0.1: 1.0000
+[2023-05-12 15:02:07] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8150 Acc Y 0.1: 0.9967
+[2023-05-12 15:02:07] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.7383 Acc Z 0.1: 0.9583
+[2023-05-12 15:04:49] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.09033079872839153
+[2023-05-12 15:04:49] {main_2.py:174} INFO - save pth in epoch: 83
+[2023-05-12 15:04:49] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9183 Acc X 0.1: 1.0000
+[2023-05-12 15:04:49] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8633 Acc Y 0.1: 0.9983
+[2023-05-12 15:04:49] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.7450 Acc Z 0.1: 0.9550
+[2023-05-12 15:07:31] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.11154440506361425
+[2023-05-12 15:07:32] {main_2.py:174} INFO - save pth in epoch: 84
+[2023-05-12 15:07:32] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9283 Acc X 0.1: 1.0000
+[2023-05-12 15:07:32] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6833 Acc Y 0.1: 0.9917
+[2023-05-12 15:07:32] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6050 Acc Z 0.1: 0.9200
+[2023-05-12 15:10:13] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.12192549333907662
+[2023-05-12 15:10:13] {main_2.py:174} INFO - save pth in epoch: 85
+[2023-05-12 15:10:13] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8600 Acc X 0.1: 1.0000
+[2023-05-12 15:10:13] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6017 Acc Y 0.1: 0.9950
+[2023-05-12 15:10:13] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6050 Acc Z 0.1: 0.9217
+[2023-05-12 15:12:56] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.11041899743179481
+[2023-05-12 15:12:56] {main_2.py:174} INFO - save pth in epoch: 86
+[2023-05-12 15:12:56] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9117 Acc X 0.1: 1.0000
+[2023-05-12 15:12:56] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.6650 Acc Y 0.1: 0.9950
+[2023-05-12 15:12:56] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6967 Acc Z 0.1: 0.9450
+[2023-05-12 15:15:38] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.10506993999394278
+[2023-05-12 15:15:38] {main_2.py:174} INFO - save pth in epoch: 87
+[2023-05-12 15:15:38] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.7900 Acc X 0.1: 1.0000
+[2023-05-12 15:15:38] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8983 Acc Y 0.1: 0.9983
+[2023-05-12 15:15:38] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5700 Acc Z 0.1: 0.9183
+[2023-05-12 15:18:21] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.12146741027633348
+[2023-05-12 15:18:21] {main_2.py:174} INFO - save pth in epoch: 88
+[2023-05-12 15:18:21] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9233 Acc X 0.1: 1.0000
+[2023-05-12 15:18:21] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.7967 Acc Y 0.1: 0.9967
+[2023-05-12 15:18:21] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.3633 Acc Z 0.1: 0.8533
+[2023-05-12 15:21:45] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.10622037306427956
+[2023-05-12 15:21:45] {main_2.py:174} INFO - save pth in epoch: 89
+[2023-05-12 15:21:45] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8850 Acc X 0.1: 1.0000
+[2023-05-12 15:21:45] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8800 Acc Y 0.1: 0.9983
+[2023-05-12 15:21:45] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5683 Acc Z 0.1: 0.9200
+[2023-05-12 15:25:47] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.08970985644496977
+[2023-05-12 15:25:47] {main_2.py:174} INFO - save pth in epoch: 90
+[2023-05-12 15:25:47] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9883 Acc X 0.1: 1.0000
+[2023-05-12 15:25:47] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.9233 Acc Y 0.1: 0.9983
+[2023-05-12 15:25:47] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6450 Acc Z 0.1: 0.9333
+[2023-05-12 15:29:49] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.09032958966369431
+[2023-05-12 15:29:49] {main_2.py:174} INFO - save pth in epoch: 91
+[2023-05-12 15:29:49] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9850 Acc X 0.1: 1.0000
+[2023-05-12 15:29:49] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.9200 Acc Y 0.1: 0.9983
+[2023-05-12 15:29:49] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6167 Acc Z 0.1: 0.9283
+[2023-05-12 15:33:54] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.0896558884717524
+[2023-05-12 15:33:54] {main_2.py:174} INFO - save pth in epoch: 92
+[2023-05-12 15:33:54] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9067 Acc X 0.1: 1.0000
+[2023-05-12 15:33:54] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.9117 Acc Y 0.1: 0.9983
+[2023-05-12 15:33:55] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.7133 Acc Z 0.1: 0.9583
+[2023-05-12 15:37:59] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.0908346637773017
+[2023-05-12 15:38:00] {main_2.py:174} INFO - save pth in epoch: 93
+[2023-05-12 15:38:00] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9767 Acc X 0.1: 1.0000
+[2023-05-12 15:38:00] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.9233 Acc Y 0.1: 0.9983
+[2023-05-12 15:38:00] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6183 Acc Z 0.1: 0.9317
+[2023-05-12 15:42:09] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.10412073928241929
+[2023-05-12 15:42:09] {main_2.py:174} INFO - save pth in epoch: 94
+[2023-05-12 15:42:09] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9450 Acc X 0.1: 1.0000
+[2023-05-12 15:42:09] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8483 Acc Y 0.1: 0.9967
+[2023-05-12 15:42:09] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6100 Acc Z 0.1: 0.9233
+[2023-05-12 15:46:18] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.09893861157198747
+[2023-05-12 15:46:18] {main_2.py:174} INFO - save pth in epoch: 95
+[2023-05-12 15:46:18] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9783 Acc X 0.1: 1.0000
+[2023-05-12 15:46:18] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8900 Acc Y 0.1: 0.9967
+[2023-05-12 15:46:18] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5650 Acc Z 0.1: 0.9217
+[2023-05-12 15:50:29] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.09510444587717454
+[2023-05-12 15:50:29] {main_2.py:174} INFO - save pth in epoch: 96
+[2023-05-12 15:50:29] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9767 Acc X 0.1: 1.0000
+[2023-05-12 15:50:29] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8750 Acc Y 0.1: 0.9983
+[2023-05-12 15:50:29] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6100 Acc Z 0.1: 0.9317
+[2023-05-12 15:54:37] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.10426810230128467
+[2023-05-12 15:54:38] {main_2.py:174} INFO - save pth in epoch: 97
+[2023-05-12 15:54:38] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9317 Acc X 0.1: 1.0000
+[2023-05-12 15:54:38] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8450 Acc Y 0.1: 0.9967
+[2023-05-12 15:54:38] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5567 Acc Z 0.1: 0.9167
+[2023-05-12 15:58:47] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.10213084761674204
+[2023-05-12 15:58:47] {main_2.py:174} INFO - save pth in epoch: 98
+[2023-05-12 15:58:47] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.8950 Acc X 0.1: 1.0000
+[2023-05-12 15:58:47] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8000 Acc Y 0.1: 0.9967
+[2023-05-12 15:58:47] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.6500 Acc Z 0.1: 0.9367
+[2023-05-12 16:02:58] {main_2.py:170} INFO - Best error mean:0.08236532839092736.  Error mean now:0.10689549969198803
+[2023-05-12 16:02:58] {main_2.py:174} INFO - save pth in epoch: 99
+[2023-05-12 16:02:58] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.9267 Acc X 0.1: 1.0000
+[2023-05-12 16:02:58] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.8183 Acc Y 0.1: 0.9967
+[2023-05-12 16:02:58] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.5717 Acc Z 0.1: 0.9300

@@ -32,3 +32,15 @@ def get_network(network_name, logger):
         args, config = get_all_config()
         net = SwinUnet(config, img_size=args.img_size, num_classes=args.num_classes)
         return net
+    elif network_name == 'swintransformer_all':
+        from .Swintransformer_all.vision_transformer import SwinUnet_all
+        from .Swintransformer_all.train import get_all_config
+        args, config = get_all_config()
+        net = SwinUnet_all(config, img_size=args.img_size, num_classes=args.num_classes)
+        return net
+    elif network_name == 'fuse_Swinunet_no_cross':
+        from .Fuse_Swinunet_no_cross.vision_transformer import SwinUnet_nocross
+        from .Fuse_Swinunet_no_cross.train import get_all_config
+        args, config = get_all_config()
+        net = SwinUnet_nocross(config, img_size=args.img_size, num_classes=args.num_classes)
+        return net

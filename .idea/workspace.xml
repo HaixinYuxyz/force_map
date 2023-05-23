@@ -2,28 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0032cbe3-1cf3-4628-8545-ffd91dcde357" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/model/Fuse_Swinunet/CrossAttention.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/Fuse_Swinunet/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/Fuse_Swinunet/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/Fuse_Swinunet/swin_tiny_patch4_window7_224_lite.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/Fuse_Swinunet/swin_transformer_unet_skip_expand_decoder_sys.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/Fuse_Swinunet/train.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/Fuse_Swinunet/vision_transformer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/SwinUnet/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/SwinUnet/swin_tiny_patch4_window7_224_lite.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Fuse_Swinunet/log.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Fuse_Swinunet/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Fuse_Swinunet_no_cross/CrossAttention.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Fuse_Swinunet_no_cross/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Fuse_Swinunet_no_cross/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Fuse_Swinunet_no_cross/swin_tiny_patch4_window7_224_lite.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Fuse_Swinunet_no_cross/swin_transformer_unet_skip_expand_decoder_sys.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Fuse_Swinunet_no_cross/train.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Fuse_Swinunet_no_cross/vision_transformer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/ResNet_FCN/log.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/ResNet_FCN/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Swintransformer_all/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Swintransformer_all/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Swintransformer_all/log.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Swintransformer_all/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Swintransformer_all/swin_tiny_patch4_window7_224_lite.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Swintransformer_all/swin_transformer_unet_skip_expand_decoder_sys.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Swintransformer_all/train.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Swintransformer_all/vision_transformer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/UNet/log.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/UNet/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/grconvnet/log.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/grconvnet/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/swin_transformer_v2/readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/ResNet_FCN/resnet_fcn.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/ResNet_FCN/resnet_fcn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/SwinUnet/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/SwinUnet/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/SwinUnet/swin_transformer_unet_skip_expand_decoder_sys.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/SwinUnet/swin_transformer_unet_skip_expand_decoder_sys.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/SwinUnet/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/SwinUnet/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/SwinUnet/vision_transformer.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/SwinUnet/vision_transformer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Fuse_Swinunet/CrossAttention.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/Fuse_Swinunet/CrossAttention.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Fuse_Swinunet/swin_transformer_unet_skip_expand_decoder_sys.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/Fuse_Swinunet/swin_transformer_unet_skip_expand_decoder_sys.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Fuse_Swinunet/vision_transformer.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/Fuse_Swinunet/vision_transformer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/try_im.py" beforeDir="false" afterPath="$PROJECT_DIR$/try_im.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,27 +70,27 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/model/Fuse_Swinunet" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/model/Fuse_Swinunet_no_cross" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\force_map_new\model\Fuse_Swinunet_no_cross" />
+      <recent name="E:\force_map_new\model\Swintransformer_all" />
       <recent name="E:\force_map_new\model\Fuse_Swinunet" />
       <recent name="E:\force_map_new\model\SwinUnet" />
       <recent name="E:\force_map_new" />
-      <recent name="E:\force_map_new\model\grconvnet" />
-      <recent name="E:\force_map_new\model\UNet" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\force_map_new\utils" />
-      <recent name="E:\force_map_new\model\ResNet_FCN" />
-      <recent name="E:\force_map_new\model\swin_transformer_v2" />
-      <recent name="E:\force_map_new\model\ResNet" />
       <recent name="E:\force_map_new\model\UNet" />
+      <recent name="E:\force_map_new\model\ResNet_FCN" />
+      <recent name="E:\force_map_new\model\grconvnet" />
+      <recent name="E:\force_map_new\model\Fuse_Swinunet" />
+      <recent name="E:\force_map_new\model\Swintransformer_all" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.main_2">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="force_map_new" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -194,9 +203,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main_2" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.try_im" />
-        <item itemvalue="Python.main_2" />
         <item itemvalue="Python.main_3" />
         <item itemvalue="Python.resnet_fcn" />
       </list>
@@ -213,7 +222,7 @@
       <workItem from="1680092893913" duration="7050000" />
       <workItem from="1683458010877" duration="78005000" />
       <workItem from="1683951319527" duration="391000" />
-      <workItem from="1683963917690" duration="31959000" />
+      <workItem from="1683963917690" duration="63306000" />
     </task>
     <servers />
   </component>
@@ -311,8 +320,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/model/Fuse_Swinunet/vision_transformer.py</url>
-          <line>90</line>
-          <option name="timeStamp" value="52" />
+          <line>99</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/model/Fuse_Swinunet/CrossAttention.py</url>
+          <line>498</line>
+          <option name="timeStamp" value="55" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -326,9 +340,9 @@
     <SUITE FILE_PATH="coverage/force_map_new$inference_forcemap.coverage" NAME="inference_forcemap 覆盖结果" MODIFIED="1683797971403" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/force_map_new$resnet_fcn.coverage" NAME="resnet_fcn 覆盖结果" MODIFIED="1683873912336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/ResNet_FCN" />
     <SUITE FILE_PATH="coverage/force_map_new$grconvnet3.coverage" NAME="grconvnet3 覆盖结果" MODIFIED="1683863792369" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/grconvnet" />
-    <SUITE FILE_PATH="coverage/force_map_new$main_2.coverage" NAME="main_2 覆盖结果" MODIFIED="1683990774384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/force_map_new$main_2.coverage" NAME="main_2 覆盖结果" MODIFIED="1684827532348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/force_map_new$try_im.coverage" NAME="try_im 覆盖结果" MODIFIED="1684681950018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/force_map_new$main.coverage" NAME="main 覆盖结果" MODIFIED="1684719784734" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/force_map_new$main.coverage" NAME="main 覆盖结果" MODIFIED="1684827515142" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/force_map_new$main_3.coverage" NAME="main_3 覆盖结果" MODIFIED="1683874764061" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/force_map_new$UNet.coverage" NAME="UNet 覆盖结果" MODIFIED="1683799448681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/UNet" />
   </component>

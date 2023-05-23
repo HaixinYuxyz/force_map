@@ -5,7 +5,7 @@
       <paths name="shoujie@10.8.14.231:22 password">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/home/shoujie/Program/force_map_new" local="$PROJECT_DIR$" />
           </mappings>
         </serverdata>
       </paths>
