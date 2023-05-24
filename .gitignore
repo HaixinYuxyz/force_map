@@ -1,4 +1,4 @@
 backbones
 output
-src
-stats*
+.idea
+__py*
