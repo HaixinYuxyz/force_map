@@ -4,4 +4,4 @@
 # Acc Y 0.05: 0.9150 Acc Y 0.1: 0.9967
 # Acc Z 0.05: 0.7917 Acc Z 0.1: 0.9817
 
-![avatar](epoch_60.png)
+![avatar](epoch_62.png)

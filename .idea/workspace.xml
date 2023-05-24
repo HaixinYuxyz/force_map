@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0032cbe3-1cf3-4628-8545-ffd91dcde357" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Fuse_Swinunet/epoch_60.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Fuse_Swinunet/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/model/Fuse_Swinunet/readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/try_im.py" beforeDir="false" afterPath="$PROJECT_DIR$/try_im.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +193,7 @@
       <workItem from="1680092893913" duration="7050000" />
       <workItem from="1683458010877" duration="78005000" />
       <workItem from="1683951319527" duration="391000" />
-      <workItem from="1683963917690" duration="68841000" />
+      <workItem from="1683963917690" duration="69186000" />
     </task>
     <servers />
   </component>
