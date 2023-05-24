@@ -1,0 +1,1716 @@
+[2023-05-23 23:16:17] {main.py:248} INFO - SwinUnet_nocross(
+  (swin_unet_rgb): SwinTransformerSys_RGB(
+    (patch_embed): PatchEmbed(
+      (proj): Conv2d(3, 96, kernel_size=(4, 4), stride=(4, 4))
+      (norm): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+    )
+    (pos_drop): Dropout(p=0.0, inplace=False)
+    (layers): ModuleList(
+      (0): BasicLayer(
+        dim=96, input_resolution=(56, 56), depth=2
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=96, input_resolution=(56, 56), num_heads=3, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=96, window_size=(7, 7), num_heads=3
+              (qkv): Linear(in_features=96, out_features=288, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=96, out_features=96, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Identity()
+            (norm2): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=96, out_features=384, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=384, out_features=96, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=96, input_resolution=(56, 56), num_heads=3, window_size=7, shift_size=3, mlp_ratio=4.0
+            (norm1): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=96, window_size=(7, 7), num_heads=3
+              (qkv): Linear(in_features=96, out_features=288, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=96, out_features=96, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.029)
+            (norm2): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=96, out_features=384, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=384, out_features=96, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (downsample): PatchMerging(
+          input_resolution=(56, 56), dim=96
+          (reduction): Linear(in_features=384, out_features=192, bias=False)
+          (norm): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (1): BasicLayer(
+        dim=192, input_resolution=(28, 28), depth=2
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=192, input_resolution=(28, 28), num_heads=6, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=192, window_size=(7, 7), num_heads=6
+              (qkv): Linear(in_features=192, out_features=576, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=192, out_features=192, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.057)
+            (norm2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=192, out_features=768, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=768, out_features=192, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=192, input_resolution=(28, 28), num_heads=6, window_size=7, shift_size=3, mlp_ratio=4.0
+            (norm1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=192, window_size=(7, 7), num_heads=6
+              (qkv): Linear(in_features=192, out_features=576, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=192, out_features=192, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.086)
+            (norm2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=192, out_features=768, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=768, out_features=192, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (downsample): PatchMerging(
+          input_resolution=(28, 28), dim=192
+          (reduction): Linear(in_features=768, out_features=384, bias=False)
+          (norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (2): BasicLayer(
+        dim=384, input_resolution=(14, 14), depth=2
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=384, input_resolution=(14, 14), num_heads=12, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=384, window_size=(7, 7), num_heads=12
+              (qkv): Linear(in_features=384, out_features=1152, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=384, out_features=384, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.114)
+            (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=384, out_features=1536, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=1536, out_features=384, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=384, input_resolution=(14, 14), num_heads=12, window_size=7, shift_size=3, mlp_ratio=4.0
+            (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=384, window_size=(7, 7), num_heads=12
+              (qkv): Linear(in_features=384, out_features=1152, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=384, out_features=384, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.143)
+            (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=384, out_features=1536, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=1536, out_features=384, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (downsample): PatchMerging(
+          input_resolution=(14, 14), dim=384
+          (reduction): Linear(in_features=1536, out_features=768, bias=False)
+          (norm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (3): BasicLayer(
+        dim=768, input_resolution=(7, 7), depth=2
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=768, input_resolution=(7, 7), num_heads=24, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=768, window_size=(7, 7), num_heads=24
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.171)
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=768, input_resolution=(7, 7), num_heads=24, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=768, window_size=(7, 7), num_heads=24
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.200)
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+      )
+    )
+    (layers_up): ModuleList(
+      (0): PatchExpand(
+        (expand): Linear(in_features=768, out_features=1536, bias=False)
+        (norm): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+      )
+      (1): BasicLayer_up(
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=384, input_resolution=(14, 14), num_heads=12, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=384, window_size=(7, 7), num_heads=12
+              (qkv): Linear(in_features=384, out_features=1152, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=384, out_features=384, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.114)
+            (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=384, out_features=1536, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=1536, out_features=384, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=384, input_resolution=(14, 14), num_heads=12, window_size=7, shift_size=3, mlp_ratio=4.0
+            (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=384, window_size=(7, 7), num_heads=12
+              (qkv): Linear(in_features=384, out_features=1152, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=384, out_features=384, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.143)
+            (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=384, out_features=1536, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=1536, out_features=384, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (upsample): PatchExpand(
+          (expand): Linear(in_features=384, out_features=768, bias=False)
+          (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (2): BasicLayer_up(
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=192, input_resolution=(28, 28), num_heads=6, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=192, window_size=(7, 7), num_heads=6
+              (qkv): Linear(in_features=192, out_features=576, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=192, out_features=192, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.057)
+            (norm2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=192, out_features=768, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=768, out_features=192, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=192, input_resolution=(28, 28), num_heads=6, window_size=7, shift_size=3, mlp_ratio=4.0
+            (norm1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=192, window_size=(7, 7), num_heads=6
+              (qkv): Linear(in_features=192, out_features=576, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=192, out_features=192, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.086)
+            (norm2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=192, out_features=768, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=768, out_features=192, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (upsample): PatchExpand(
+          (expand): Linear(in_features=192, out_features=384, bias=False)
+          (norm): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (3): BasicLayer_up(
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=96, input_resolution=(56, 56), num_heads=3, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=96, window_size=(7, 7), num_heads=3
+              (qkv): Linear(in_features=96, out_features=288, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=96, out_features=96, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Identity()
+            (norm2): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=96, out_features=384, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=384, out_features=96, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=96, input_resolution=(56, 56), num_heads=3, window_size=7, shift_size=3, mlp_ratio=4.0
+            (norm1): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=96, window_size=(7, 7), num_heads=3
+              (qkv): Linear(in_features=96, out_features=288, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=96, out_features=96, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.029)
+            (norm2): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=96, out_features=384, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=384, out_features=96, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+      )
+    )
+    (concat_back_dim): ModuleList(
+      (0): Identity()
+      (1): Linear(in_features=768, out_features=384, bias=True)
+      (2): Linear(in_features=384, out_features=192, bias=True)
+      (3): Linear(in_features=192, out_features=96, bias=True)
+    )
+    (norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+    (norm_up): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+    (up): FinalPatchExpand_X4(
+      (expand): Linear(in_features=96, out_features=1536, bias=False)
+      (norm): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+    )
+    (output): Conv2d(96, 3, kernel_size=(1, 1), stride=(1, 1), bias=False)
+  )
+  (swin_unet_inf): SwinTransformerSys_inf(
+    (patch_embed): PatchEmbed(
+      (proj): Conv2d(3, 96, kernel_size=(4, 4), stride=(4, 4))
+      (norm): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+    )
+    (pos_drop): Dropout(p=0.0, inplace=False)
+    (layers): ModuleList(
+      (0): BasicLayer(
+        dim=96, input_resolution=(56, 56), depth=2
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=96, input_resolution=(56, 56), num_heads=3, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=96, window_size=(7, 7), num_heads=3
+              (qkv): Linear(in_features=96, out_features=288, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=96, out_features=96, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Identity()
+            (norm2): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=96, out_features=384, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=384, out_features=96, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=96, input_resolution=(56, 56), num_heads=3, window_size=7, shift_size=3, mlp_ratio=4.0
+            (norm1): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=96, window_size=(7, 7), num_heads=3
+              (qkv): Linear(in_features=96, out_features=288, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=96, out_features=96, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.029)
+            (norm2): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=96, out_features=384, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=384, out_features=96, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (downsample): PatchMerging(
+          input_resolution=(56, 56), dim=96
+          (reduction): Linear(in_features=384, out_features=192, bias=False)
+          (norm): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (1): BasicLayer(
+        dim=192, input_resolution=(28, 28), depth=2
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=192, input_resolution=(28, 28), num_heads=6, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=192, window_size=(7, 7), num_heads=6
+              (qkv): Linear(in_features=192, out_features=576, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=192, out_features=192, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.057)
+            (norm2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=192, out_features=768, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=768, out_features=192, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=192, input_resolution=(28, 28), num_heads=6, window_size=7, shift_size=3, mlp_ratio=4.0
+            (norm1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=192, window_size=(7, 7), num_heads=6
+              (qkv): Linear(in_features=192, out_features=576, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=192, out_features=192, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.086)
+            (norm2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=192, out_features=768, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=768, out_features=192, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (downsample): PatchMerging(
+          input_resolution=(28, 28), dim=192
+          (reduction): Linear(in_features=768, out_features=384, bias=False)
+          (norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (2): BasicLayer(
+        dim=384, input_resolution=(14, 14), depth=2
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=384, input_resolution=(14, 14), num_heads=12, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=384, window_size=(7, 7), num_heads=12
+              (qkv): Linear(in_features=384, out_features=1152, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=384, out_features=384, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.114)
+            (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=384, out_features=1536, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=1536, out_features=384, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=384, input_resolution=(14, 14), num_heads=12, window_size=7, shift_size=3, mlp_ratio=4.0
+            (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=384, window_size=(7, 7), num_heads=12
+              (qkv): Linear(in_features=384, out_features=1152, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=384, out_features=384, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.143)
+            (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=384, out_features=1536, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=1536, out_features=384, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (downsample): PatchMerging(
+          input_resolution=(14, 14), dim=384
+          (reduction): Linear(in_features=1536, out_features=768, bias=False)
+          (norm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (3): BasicLayer(
+        dim=768, input_resolution=(7, 7), depth=2
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=768, input_resolution=(7, 7), num_heads=24, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=768, window_size=(7, 7), num_heads=24
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.171)
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=768, input_resolution=(7, 7), num_heads=24, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=768, window_size=(7, 7), num_heads=24
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.200)
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+      )
+    )
+    (layers_up): ModuleList(
+      (0): PatchExpand(
+        (expand): Linear(in_features=768, out_features=1536, bias=False)
+        (norm): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+      )
+      (1): BasicLayer_up(
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=384, input_resolution=(14, 14), num_heads=12, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=384, window_size=(7, 7), num_heads=12
+              (qkv): Linear(in_features=384, out_features=1152, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=384, out_features=384, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.114)
+            (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=384, out_features=1536, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=1536, out_features=384, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=384, input_resolution=(14, 14), num_heads=12, window_size=7, shift_size=3, mlp_ratio=4.0
+            (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=384, window_size=(7, 7), num_heads=12
+              (qkv): Linear(in_features=384, out_features=1152, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=384, out_features=384, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.143)
+            (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=384, out_features=1536, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=1536, out_features=384, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (upsample): PatchExpand(
+          (expand): Linear(in_features=384, out_features=768, bias=False)
+          (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (2): BasicLayer_up(
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=192, input_resolution=(28, 28), num_heads=6, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=192, window_size=(7, 7), num_heads=6
+              (qkv): Linear(in_features=192, out_features=576, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=192, out_features=192, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.057)
+            (norm2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=192, out_features=768, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=768, out_features=192, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=192, input_resolution=(28, 28), num_heads=6, window_size=7, shift_size=3, mlp_ratio=4.0
+            (norm1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=192, window_size=(7, 7), num_heads=6
+              (qkv): Linear(in_features=192, out_features=576, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=192, out_features=192, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.086)
+            (norm2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=192, out_features=768, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=768, out_features=192, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (upsample): PatchExpand(
+          (expand): Linear(in_features=192, out_features=384, bias=False)
+          (norm): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (3): BasicLayer_up(
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=96, input_resolution=(56, 56), num_heads=3, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=96, window_size=(7, 7), num_heads=3
+              (qkv): Linear(in_features=96, out_features=288, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=96, out_features=96, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Identity()
+            (norm2): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=96, out_features=384, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=384, out_features=96, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=96, input_resolution=(56, 56), num_heads=3, window_size=7, shift_size=3, mlp_ratio=4.0
+            (norm1): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=96, window_size=(7, 7), num_heads=3
+              (qkv): Linear(in_features=96, out_features=288, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=96, out_features=96, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.029)
+            (norm2): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=96, out_features=384, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=384, out_features=96, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+      )
+    )
+    (concat_back_dim): ModuleList(
+      (0): Identity()
+      (1): Linear(in_features=768, out_features=384, bias=True)
+      (2): Linear(in_features=384, out_features=192, bias=True)
+      (3): Linear(in_features=192, out_features=96, bias=True)
+    )
+    (norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+    (norm_up): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+    (up): FinalPatchExpand_X4(
+      (expand): Linear(in_features=96, out_features=1536, bias=False)
+      (norm): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+    )
+    (output): Conv2d(96, 3, kernel_size=(1, 1), stride=(1, 1), bias=False)
+  )
+  (swin_unet_up): SwinTransformerSys_UP(
+    (patch_embed): PatchEmbed(
+      (proj): Conv2d(3, 96, kernel_size=(4, 4), stride=(4, 4))
+      (norm): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+    )
+    (pos_drop): Dropout(p=0.0, inplace=False)
+    (layers): ModuleList(
+      (0): BasicLayer(
+        dim=96, input_resolution=(56, 56), depth=2
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=96, input_resolution=(56, 56), num_heads=3, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=96, window_size=(7, 7), num_heads=3
+              (qkv): Linear(in_features=96, out_features=288, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=96, out_features=96, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Identity()
+            (norm2): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=96, out_features=384, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=384, out_features=96, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=96, input_resolution=(56, 56), num_heads=3, window_size=7, shift_size=3, mlp_ratio=4.0
+            (norm1): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=96, window_size=(7, 7), num_heads=3
+              (qkv): Linear(in_features=96, out_features=288, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=96, out_features=96, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.029)
+            (norm2): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=96, out_features=384, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=384, out_features=96, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (downsample): PatchMerging(
+          input_resolution=(56, 56), dim=96
+          (reduction): Linear(in_features=384, out_features=192, bias=False)
+          (norm): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (1): BasicLayer(
+        dim=192, input_resolution=(28, 28), depth=2
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=192, input_resolution=(28, 28), num_heads=6, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=192, window_size=(7, 7), num_heads=6
+              (qkv): Linear(in_features=192, out_features=576, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=192, out_features=192, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.057)
+            (norm2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=192, out_features=768, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=768, out_features=192, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=192, input_resolution=(28, 28), num_heads=6, window_size=7, shift_size=3, mlp_ratio=4.0
+            (norm1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=192, window_size=(7, 7), num_heads=6
+              (qkv): Linear(in_features=192, out_features=576, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=192, out_features=192, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.086)
+            (norm2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=192, out_features=768, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=768, out_features=192, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (downsample): PatchMerging(
+          input_resolution=(28, 28), dim=192
+          (reduction): Linear(in_features=768, out_features=384, bias=False)
+          (norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (2): BasicLayer(
+        dim=384, input_resolution=(14, 14), depth=2
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=384, input_resolution=(14, 14), num_heads=12, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=384, window_size=(7, 7), num_heads=12
+              (qkv): Linear(in_features=384, out_features=1152, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=384, out_features=384, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.114)
+            (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=384, out_features=1536, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=1536, out_features=384, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=384, input_resolution=(14, 14), num_heads=12, window_size=7, shift_size=3, mlp_ratio=4.0
+            (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=384, window_size=(7, 7), num_heads=12
+              (qkv): Linear(in_features=384, out_features=1152, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=384, out_features=384, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.143)
+            (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=384, out_features=1536, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=1536, out_features=384, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (downsample): PatchMerging(
+          input_resolution=(14, 14), dim=384
+          (reduction): Linear(in_features=1536, out_features=768, bias=False)
+          (norm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (3): BasicLayer(
+        dim=768, input_resolution=(7, 7), depth=2
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=768, input_resolution=(7, 7), num_heads=24, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=768, window_size=(7, 7), num_heads=24
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.171)
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=768, input_resolution=(7, 7), num_heads=24, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=768, window_size=(7, 7), num_heads=24
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.200)
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+      )
+    )
+    (layers_up): ModuleList(
+      (0): PatchExpand(
+        (expand): Linear(in_features=768, out_features=1536, bias=False)
+        (norm): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+      )
+      (1): BasicLayer_up(
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=384, input_resolution=(14, 14), num_heads=12, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=384, window_size=(7, 7), num_heads=12
+              (qkv): Linear(in_features=384, out_features=1152, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=384, out_features=384, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.114)
+            (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=384, out_features=1536, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=1536, out_features=384, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=384, input_resolution=(14, 14), num_heads=12, window_size=7, shift_size=3, mlp_ratio=4.0
+            (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=384, window_size=(7, 7), num_heads=12
+              (qkv): Linear(in_features=384, out_features=1152, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=384, out_features=384, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.143)
+            (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=384, out_features=1536, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=1536, out_features=384, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (upsample): PatchExpand(
+          (expand): Linear(in_features=384, out_features=768, bias=False)
+          (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (2): BasicLayer_up(
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=192, input_resolution=(28, 28), num_heads=6, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=192, window_size=(7, 7), num_heads=6
+              (qkv): Linear(in_features=192, out_features=576, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=192, out_features=192, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.057)
+            (norm2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=192, out_features=768, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=768, out_features=192, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=192, input_resolution=(28, 28), num_heads=6, window_size=7, shift_size=3, mlp_ratio=4.0
+            (norm1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=192, window_size=(7, 7), num_heads=6
+              (qkv): Linear(in_features=192, out_features=576, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=192, out_features=192, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.086)
+            (norm2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=192, out_features=768, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=768, out_features=192, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (upsample): PatchExpand(
+          (expand): Linear(in_features=192, out_features=384, bias=False)
+          (norm): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (3): BasicLayer_up(
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            dim=96, input_resolution=(56, 56), num_heads=3, window_size=7, shift_size=0, mlp_ratio=4.0
+            (norm1): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=96, window_size=(7, 7), num_heads=3
+              (qkv): Linear(in_features=96, out_features=288, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=96, out_features=96, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Identity()
+            (norm2): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=96, out_features=384, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=384, out_features=96, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            dim=96, input_resolution=(56, 56), num_heads=3, window_size=7, shift_size=3, mlp_ratio=4.0
+            (norm1): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              dim=96, window_size=(7, 7), num_heads=3
+              (qkv): Linear(in_features=96, out_features=288, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=96, out_features=96, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath(drop_prob=0.029)
+            (norm2): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=96, out_features=384, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=384, out_features=96, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+      )
+    )
+    (concat_rgb_inf): Linear(in_features=1536, out_features=768, bias=True)
+    (concat_back_dim): ModuleList(
+      (0): Identity()
+      (1): Linear(in_features=768, out_features=384, bias=True)
+      (2): Linear(in_features=384, out_features=192, bias=True)
+      (3): Linear(in_features=192, out_features=96, bias=True)
+    )
+    (norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+    (norm_up): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+    (up): FinalPatchExpand_X4(
+      (expand): Linear(in_features=96, out_features=1536, bias=False)
+      (norm): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+    )
+    (output): Conv2d(96, 3, kernel_size=(1, 1), stride=(1, 1), bias=False)
+  )
+  (cross_attention_0): CrossAttention(
+    (cross_attn_layer): BasicCrossAttentionLayer(
+      (blocks): ModuleList(
+        (0): SwinCrossAttentionBlock(
+          (norm1_branch_1): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+          (norm1_branch_2): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowCrossAttention(
+            (qkv_branch_1): Linear(in_features=96, out_features=288, bias=True)
+            (qkv_branch_2): Linear(in_features=96, out_features=288, bias=True)
+            (attn_drop_branch_1): Dropout(p=0.0, inplace=False)
+            (attn_drop_branch_2): Dropout(p=0.0, inplace=False)
+            (proj_branch_1): Linear(in_features=96, out_features=96, bias=True)
+            (proj_branch_2): Linear(in_features=96, out_features=96, bias=True)
+            (proj_drop_branch_1): Dropout(p=0.0, inplace=False)
+            (proj_drop_branch_2): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): Identity()
+          (norm2_branch_1): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+          (norm2_branch_2): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+          (mlp_branch_1): Mlp(
+            (fc1): Linear(in_features=96, out_features=384, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=384, out_features=96, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+          (mlp_branch_2): Mlp(
+            (fc1): Linear(in_features=96, out_features=384, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=384, out_features=96, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (fuse): Linear(in_features=192, out_features=96, bias=True)
+    )
+    (norm_layer): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+  )
+  (cross_attention_1): CrossAttention(
+    (cross_attn_layer): BasicCrossAttentionLayer(
+      (blocks): ModuleList(
+        (0): SwinCrossAttentionBlock(
+          (norm1_branch_1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+          (norm1_branch_2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowCrossAttention(
+            (qkv_branch_1): Linear(in_features=192, out_features=576, bias=True)
+            (qkv_branch_2): Linear(in_features=192, out_features=576, bias=True)
+            (attn_drop_branch_1): Dropout(p=0.0, inplace=False)
+            (attn_drop_branch_2): Dropout(p=0.0, inplace=False)
+            (proj_branch_1): Linear(in_features=192, out_features=192, bias=True)
+            (proj_branch_2): Linear(in_features=192, out_features=192, bias=True)
+            (proj_drop_branch_1): Dropout(p=0.0, inplace=False)
+            (proj_drop_branch_2): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): Identity()
+          (norm2_branch_1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+          (norm2_branch_2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+          (mlp_branch_1): Mlp(
+            (fc1): Linear(in_features=192, out_features=768, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=768, out_features=192, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+          (mlp_branch_2): Mlp(
+            (fc1): Linear(in_features=192, out_features=768, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=768, out_features=192, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (fuse): Linear(in_features=384, out_features=192, bias=True)
+    )
+    (norm_layer): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+  )
+  (cross_attention_2): CrossAttention(
+    (cross_attn_layer): BasicCrossAttentionLayer(
+      (blocks): ModuleList(
+        (0): SwinCrossAttentionBlock(
+          (norm1_branch_1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+          (norm1_branch_2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowCrossAttention(
+            (qkv_branch_1): Linear(in_features=384, out_features=1152, bias=True)
+            (qkv_branch_2): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop_branch_1): Dropout(p=0.0, inplace=False)
+            (attn_drop_branch_2): Dropout(p=0.0, inplace=False)
+            (proj_branch_1): Linear(in_features=384, out_features=384, bias=True)
+            (proj_branch_2): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop_branch_1): Dropout(p=0.0, inplace=False)
+            (proj_drop_branch_2): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): Identity()
+          (norm2_branch_1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+          (norm2_branch_2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+          (mlp_branch_1): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+          (mlp_branch_2): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (fuse): Linear(in_features=768, out_features=384, bias=True)
+    )
+    (norm_layer): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+  )
+  (down_sample_0): Linear(in_features=288, out_features=96, bias=True)
+  (down_sample_1): Linear(in_features=576, out_features=192, bias=True)
+  (down_sample_2): Linear(in_features=1152, out_features=384, bias=True)
+)
+[2023-05-23 23:18:47] {main.py:169} INFO - save best pth in epoch: 0
+[2023-05-23 23:18:47] {main.py:170} INFO - Best error mean:3.849806666920582.  Error mean now:3.849806666920582
+[2023-05-23 23:18:47] {main.py:174} INFO - save pth in epoch: 0
+[2023-05-23 23:18:48] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-23 23:18:48] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-23 23:18:48] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-23 23:21:04] {main.py:169} INFO - save best pth in epoch: 1
+[2023-05-23 23:21:04] {main.py:170} INFO - Best error mean:3.8358124993741516.  Error mean now:3.8358124993741516
+[2023-05-23 23:21:04] {main.py:174} INFO - save pth in epoch: 1
+[2023-05-23 23:21:04] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-23 23:21:04] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-23 23:21:05] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-23 23:23:17] {main.py:170} INFO - Best error mean:3.8358124993741516.  Error mean now:3.8629162853459516
+[2023-05-23 23:23:17] {main.py:174} INFO - save pth in epoch: 2
+[2023-05-23 23:23:17] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-23 23:23:17] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-23 23:23:18] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-23 23:25:36] {main.py:170} INFO - Best error mean:3.8358124993741516.  Error mean now:4.259172617097695
+[2023-05-23 23:25:36] {main.py:174} INFO - save pth in epoch: 3
+[2023-05-23 23:25:36] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0000 Acc X 0.1: 0.0000
+[2023-05-23 23:25:36] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0000 Acc Y 0.1: 0.0000
+[2023-05-23 23:25:36] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0000
+[2023-05-23 23:27:55] {main.py:169} INFO - save best pth in epoch: 4
+[2023-05-23 23:27:55] {main.py:170} INFO - Best error mean:1.2381999902240932.  Error mean now:1.2381999902240932
+[2023-05-23 23:27:55] {main.py:174} INFO - save pth in epoch: 4
+[2023-05-23 23:27:55] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0567 Acc X 0.1: 0.1300
+[2023-05-23 23:27:55] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0600 Acc Y 0.1: 0.1150
+[2023-05-23 23:27:55] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0583 Acc Z 0.1: 0.1217
+[2023-05-23 23:30:12] {main.py:169} INFO - save best pth in epoch: 5
+[2023-05-23 23:30:12] {main.py:170} INFO - Best error mean:0.7401972951026012.  Error mean now:0.7401972951026012
+[2023-05-23 23:30:13] {main.py:174} INFO - save pth in epoch: 5
+[2023-05-23 23:30:13] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.1283 Acc X 0.1: 0.2583
+[2023-05-23 23:30:13] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.1467 Acc Y 0.1: 0.2667
+[2023-05-23 23:30:13] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0783 Acc Z 0.1: 0.1817
+[2023-05-23 23:32:30] {main.py:169} INFO - save best pth in epoch: 6
+[2023-05-23 23:32:30] {main.py:170} INFO - Best error mean:0.36512612423549096.  Error mean now:0.36512612423549096
+[2023-05-23 23:32:31] {main.py:174} INFO - save pth in epoch: 6
+[2023-05-23 23:32:31] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.3217 Acc X 0.1: 0.5850
+[2023-05-23 23:32:31] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.1350 Acc Y 0.1: 0.3217
+[2023-05-23 23:32:31] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.2083 Acc Z 0.1: 0.4233
+[2023-05-23 23:34:43] {main.py:169} INFO - save best pth in epoch: 7
+[2023-05-23 23:34:43] {main.py:170} INFO - Best error mean:0.18886848434184988.  Error mean now:0.18886848434184988
+[2023-05-23 23:34:44] {main.py:174} INFO - save pth in epoch: 7
+[2023-05-23 23:34:44] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.5300 Acc X 0.1: 0.7867
+[2023-05-23 23:34:44] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.5067 Acc Y 0.1: 0.8050
+[2023-05-23 23:34:44] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.4667 Acc Z 0.1: 0.7733
+[2023-05-23 23:36:57] {main.py:170} INFO - Best error mean:0.18886848434184988.  Error mean now:0.22940892012789843
+[2023-05-23 23:36:58] {main.py:174} INFO - save pth in epoch: 8
+[2023-05-23 23:36:58] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.3317 Acc X 0.1: 0.6933
+[2023-05-23 23:36:58] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.2800 Acc Y 0.1: 0.6283
+[2023-05-23 23:36:58] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.4883 Acc Z 0.1: 0.7717
+[2023-05-23 23:39:10] {main.py:169} INFO - save best pth in epoch: 9
+[2023-05-23 23:39:10] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:0.17763260200309255
+[2023-05-23 23:39:10] {main.py:174} INFO - save pth in epoch: 9
+[2023-05-23 23:39:10] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.4917 Acc X 0.1: 0.8667
+[2023-05-23 23:39:10] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.5233 Acc Y 0.1: 0.8683
+[2023-05-23 23:39:10] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.4367 Acc Z 0.1: 0.7600
+[2023-05-23 23:41:22] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:0.2582608152801792
+[2023-05-23 23:41:22] {main.py:174} INFO - save pth in epoch: 10
+[2023-05-23 23:41:22] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.1950 Acc X 0.1: 0.5367
+[2023-05-23 23:41:22] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.3833 Acc Y 0.1: 0.7383
+[2023-05-23 23:41:22] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.3767 Acc Z 0.1: 0.6500
+[2023-05-23 23:43:34] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:0.2762956682872027
+[2023-05-23 23:43:34] {main.py:174} INFO - save pth in epoch: 11
+[2023-05-23 23:43:34] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.3750 Acc X 0.1: 0.7867
+[2023-05-23 23:43:34] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.4700 Acc Y 0.1: 0.7833
+[2023-05-23 23:43:34] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.2200 Acc Z 0.1: 0.4217
+[2023-05-23 23:45:45] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.8257175682485105
+[2023-05-23 23:45:46] {main.py:174} INFO - save pth in epoch: 12
+[2023-05-23 23:45:46] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-23 23:45:46] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-23 23:45:46] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-23 23:47:53] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.8270241933564346
+[2023-05-23 23:47:54] {main.py:174} INFO - save pth in epoch: 13
+[2023-05-23 23:47:54] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-23 23:47:54] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-23 23:47:54] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-23 23:50:02] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.840530653744936
+[2023-05-23 23:50:03] {main.py:174} INFO - save pth in epoch: 14
+[2023-05-23 23:50:03] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-23 23:50:03] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-23 23:50:03] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-23 23:52:11] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.8371843469639617
+[2023-05-23 23:52:12] {main.py:174} INFO - save pth in epoch: 15
+[2023-05-23 23:52:12] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-23 23:52:12] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-23 23:52:12] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-23 23:54:21] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.841902845352888
+[2023-05-23 23:54:22] {main.py:174} INFO - save pth in epoch: 16
+[2023-05-23 23:54:22] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-23 23:54:22] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-23 23:54:22] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-23 23:56:29] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.827100490679344
+[2023-05-23 23:56:30] {main.py:174} INFO - save pth in epoch: 17
+[2023-05-23 23:56:30] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-23 23:56:30] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-23 23:56:30] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-23 23:58:38] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.8617586270471413
+[2023-05-23 23:58:39] {main.py:174} INFO - save pth in epoch: 18
+[2023-05-23 23:58:39] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-23 23:58:39] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0067
+[2023-05-23 23:58:39] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0000
+[2023-05-24 00:00:49] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.836529346058766
+[2023-05-24 00:00:50] {main.py:174} INFO - save pth in epoch: 19
+[2023-05-24 00:00:50] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 00:00:50] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:00:50] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 00:02:57] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.838294483274221
+[2023-05-24 00:02:58] {main.py:174} INFO - save pth in epoch: 20
+[2023-05-24 00:02:58] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 00:02:58] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:02:58] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 00:05:05] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.873683049827814
+[2023-05-24 00:05:05] {main.py:174} INFO - save pth in epoch: 21
+[2023-05-24 00:05:05] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 00:05:05] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:05:05] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0000
+[2023-05-24 00:07:12] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.843272407402595
+[2023-05-24 00:07:13] {main.py:174} INFO - save pth in epoch: 22
+[2023-05-24 00:07:13] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 00:07:13] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:07:13] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 00:09:22] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.843485642423233
+[2023-05-24 00:09:22] {main.py:174} INFO - save pth in epoch: 23
+[2023-05-24 00:09:22] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 00:09:22] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:09:23] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 00:11:32] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.7839959240456422
+[2023-05-24 00:11:32] {main.py:174} INFO - save pth in epoch: 24
+[2023-05-24 00:11:32] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 00:11:32] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0067
+[2023-05-24 00:11:32] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 00:13:40] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.825680832813183
+[2023-05-24 00:13:40] {main.py:174} INFO - save pth in epoch: 25
+[2023-05-24 00:13:40] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 00:13:40] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:13:40] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 00:15:48] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.862113801985979
+[2023-05-24 00:15:48] {main.py:174} INFO - save pth in epoch: 26
+[2023-05-24 00:15:48] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 00:15:48] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:15:48] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0000
+[2023-05-24 00:17:57] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.8489765501519044
+[2023-05-24 00:17:57] {main.py:174} INFO - save pth in epoch: 27
+[2023-05-24 00:17:57] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 00:17:57] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:17:57] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 00:20:06] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.768545432835817
+[2023-05-24 00:20:06] {main.py:174} INFO - save pth in epoch: 28
+[2023-05-24 00:20:06] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 00:20:06] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:20:06] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 00:22:15] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.8656939719120658
+[2023-05-24 00:22:16] {main.py:174} INFO - save pth in epoch: 29
+[2023-05-24 00:22:16] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 00:22:16] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:22:16] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0000
+[2023-05-24 00:24:26] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.8511271764338018
+[2023-05-24 00:24:27] {main.py:174} INFO - save pth in epoch: 30
+[2023-05-24 00:24:27] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 00:24:27] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:24:27] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 00:26:50] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.812299115508795
+[2023-05-24 00:26:50] {main.py:174} INFO - save pth in epoch: 31
+[2023-05-24 00:26:50] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 00:26:51] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:26:51] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 00:29:15] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.804216538419326
+[2023-05-24 00:29:15] {main.py:174} INFO - save pth in epoch: 32
+[2023-05-24 00:29:15] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 00:29:15] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0000 Acc Y 0.1: 0.0017
+[2023-05-24 00:29:15] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0033
+[2023-05-24 00:31:36] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.8442024966577684
+[2023-05-24 00:31:36] {main.py:174} INFO - save pth in epoch: 33
+[2023-05-24 00:31:36] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 00:31:36] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:31:36] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 00:34:02] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.8485238609214627
+[2023-05-24 00:34:03] {main.py:174} INFO - save pth in epoch: 34
+[2023-05-24 00:34:03] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 00:34:03] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:34:03] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 00:36:29] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.8394290785491467
+[2023-05-24 00:36:30] {main.py:174} INFO - save pth in epoch: 35
+[2023-05-24 00:36:30] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 00:36:30] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:36:30] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 00:38:57] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.8435469335814316
+[2023-05-24 00:38:58] {main.py:174} INFO - save pth in epoch: 36
+[2023-05-24 00:38:58] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 00:38:58] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:38:58] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 00:41:25] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.836783793320258
+[2023-05-24 00:41:25] {main.py:174} INFO - save pth in epoch: 37
+[2023-05-24 00:41:25] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 00:41:26] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:41:26] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 00:43:59] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.856379242291053
+[2023-05-24 00:44:00] {main.py:174} INFO - save pth in epoch: 38
+[2023-05-24 00:44:00] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 00:44:00] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:44:00] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0000
+[2023-05-24 00:46:46] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.8362692559262115
+[2023-05-24 00:46:46] {main.py:174} INFO - save pth in epoch: 39
+[2023-05-24 00:46:47] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 00:46:47] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:46:47] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 00:49:30] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.8547011530896027
+[2023-05-24 00:49:31] {main.py:174} INFO - save pth in epoch: 40
+[2023-05-24 00:49:31] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 00:49:31] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:49:31] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 00:52:17] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.8465799612303573
+[2023-05-24 00:52:18] {main.py:174} INFO - save pth in epoch: 41
+[2023-05-24 00:52:18] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 00:52:18] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:52:18] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 00:55:04] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.8473454092442987
+[2023-05-24 00:55:05] {main.py:174} INFO - save pth in epoch: 42
+[2023-05-24 00:55:05] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 00:55:05] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:55:05] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 00:57:53] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.84811544790864
+[2023-05-24 00:57:53] {main.py:174} INFO - save pth in epoch: 43
+[2023-05-24 00:57:53] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 00:57:53] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 00:57:54] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 01:00:49] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.8494112470249338
+[2023-05-24 01:00:49] {main.py:174} INFO - save pth in epoch: 44
+[2023-05-24 01:00:49] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 01:00:49] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 01:00:50] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 01:03:49] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.8387655964990457
+[2023-05-24 01:03:50] {main.py:174} INFO - save pth in epoch: 45
+[2023-05-24 01:03:50] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 01:03:50] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 01:03:50] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0000 Acc Z 0.1: 0.0017
+[2023-05-24 01:06:47] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.4882803901533284
+[2023-05-24 01:06:47] {main.py:174} INFO - save pth in epoch: 46
+[2023-05-24 01:06:47] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0083
+[2023-05-24 01:06:47] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0050
+[2023-05-24 01:06:48] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0167 Acc Z 0.1: 0.0283
+[2023-05-24 01:09:46] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.4970686328907807
+[2023-05-24 01:09:46] {main.py:174} INFO - save pth in epoch: 47
+[2023-05-24 01:09:46] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 01:09:46] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0000 Acc Y 0.1: 0.0017
+[2023-05-24 01:09:46] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0200 Acc Z 0.1: 0.0300
+[2023-05-24 01:12:37] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3379921895762283
+[2023-05-24 01:12:38] {main.py:174} INFO - save pth in epoch: 48
+[2023-05-24 01:12:38] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 01:12:38] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0000 Acc Y 0.1: 0.0033
+[2023-05-24 01:12:38] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0217 Acc Z 0.1: 0.0433
+[2023-05-24 01:15:35] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.4770777588586013
+[2023-05-24 01:15:36] {main.py:174} INFO - save pth in epoch: 49
+[2023-05-24 01:15:36] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 01:15:36] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 01:15:36] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0200 Acc Z 0.1: 0.0300
+[2023-05-24 01:18:29] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3721678078671298
+[2023-05-24 01:18:30] {main.py:174} INFO - save pth in epoch: 50
+[2023-05-24 01:18:30] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 01:18:30] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0050
+[2023-05-24 01:18:30] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0233 Acc Z 0.1: 0.0367
+[2023-05-24 01:21:20] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3163251174986366
+[2023-05-24 01:21:21] {main.py:174} INFO - save pth in epoch: 51
+[2023-05-24 01:21:21] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0067
+[2023-05-24 01:21:21] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0050
+[2023-05-24 01:21:21] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0367
+[2023-05-24 01:24:19] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.351563888092836
+[2023-05-24 01:24:20] {main.py:174} INFO - save pth in epoch: 52
+[2023-05-24 01:24:20] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 01:24:20] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 01:24:20] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0233 Acc Z 0.1: 0.0367
+[2023-05-24 01:27:22] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.432490494449933
+[2023-05-24 01:27:23] {main.py:174} INFO - save pth in epoch: 53
+[2023-05-24 01:27:23] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 01:27:23] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 01:27:23] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0233 Acc Z 0.1: 0.0300
+[2023-05-24 01:30:36] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.323411759833495
+[2023-05-24 01:30:37] {main.py:174} INFO - save pth in epoch: 54
+[2023-05-24 01:30:37] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 01:30:37] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0000 Acc Y 0.1: 0.0033
+[2023-05-24 01:30:37] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0200 Acc Z 0.1: 0.0450
+[2023-05-24 01:33:38] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.326219765593608
+[2023-05-24 01:33:38] {main.py:174} INFO - save pth in epoch: 55
+[2023-05-24 01:33:38] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 01:33:39] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0000 Acc Y 0.1: 0.0017
+[2023-05-24 01:33:39] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0217 Acc Z 0.1: 0.0400
+[2023-05-24 01:36:48] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.312793302188317
+[2023-05-24 01:36:49] {main.py:174} INFO - save pth in epoch: 56
+[2023-05-24 01:36:49] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 01:36:49] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 01:36:49] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0233 Acc Z 0.1: 0.0350
+[2023-05-24 01:39:56] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.35308342864116
+[2023-05-24 01:39:56] {main.py:174} INFO - save pth in epoch: 57
+[2023-05-24 01:39:57] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 01:39:57] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0000 Acc Y 0.1: 0.0033
+[2023-05-24 01:39:57] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0267 Acc Z 0.1: 0.0333
+[2023-05-24 01:43:09] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3239343650142352
+[2023-05-24 01:43:10] {main.py:174} INFO - save pth in epoch: 58
+[2023-05-24 01:43:10] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 01:43:10] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0000 Acc Y 0.1: 0.0033
+[2023-05-24 01:43:10] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0233 Acc Z 0.1: 0.0383
+[2023-05-24 01:46:34] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3288954436282316
+[2023-05-24 01:46:35] {main.py:174} INFO - save pth in epoch: 59
+[2023-05-24 01:46:35] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 01:46:35] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 01:46:35] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0333
+[2023-05-24 01:50:05] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3051928493877254
+[2023-05-24 01:50:05] {main.py:174} INFO - save pth in epoch: 60
+[2023-05-24 01:50:05] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 01:50:05] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 01:50:06] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0367
+[2023-05-24 01:53:33] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.32194851299127
+[2023-05-24 01:53:33] {main.py:174} INFO - save pth in epoch: 61
+[2023-05-24 01:53:33] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 01:53:33] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 01:53:33] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0383
+[2023-05-24 01:57:00] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.361827564785878
+[2023-05-24 01:57:00] {main.py:174} INFO - save pth in epoch: 62
+[2023-05-24 01:57:00] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 01:57:00] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 01:57:00] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0267 Acc Z 0.1: 0.0350
+[2023-05-24 02:00:14] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3265213311215245
+[2023-05-24 02:00:15] {main.py:174} INFO - save pth in epoch: 63
+[2023-05-24 02:00:15] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 02:00:15] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 02:00:15] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0367
+[2023-05-24 02:03:35] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.355768574178219
+[2023-05-24 02:03:36] {main.py:174} INFO - save pth in epoch: 64
+[2023-05-24 02:03:36] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 02:03:36] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 02:03:36] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0383
+[2023-05-24 02:07:08] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.309920461823543
+[2023-05-24 02:07:08] {main.py:174} INFO - save pth in epoch: 65
+[2023-05-24 02:07:08] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 02:07:08] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 02:07:08] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0233 Acc Z 0.1: 0.0367
+[2023-05-24 02:10:35] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.363906500190496
+[2023-05-24 02:10:36] {main.py:174} INFO - save pth in epoch: 66
+[2023-05-24 02:10:36] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 02:10:36] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 02:10:36] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0233 Acc Z 0.1: 0.0350
+[2023-05-24 02:13:53] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3467860893408456
+[2023-05-24 02:13:54] {main.py:174} INFO - save pth in epoch: 67
+[2023-05-24 02:13:54] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 02:13:54] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 02:13:54] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0200 Acc Z 0.1: 0.0350
+[2023-05-24 02:17:21] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.2883215884367627
+[2023-05-24 02:17:22] {main.py:174} INFO - save pth in epoch: 68
+[2023-05-24 02:17:22] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 02:17:22] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 02:17:22] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0367
+[2023-05-24 02:20:43] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3531342303256197
+[2023-05-24 02:20:44] {main.py:174} INFO - save pth in epoch: 69
+[2023-05-24 02:20:44] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 02:20:44] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 02:20:44] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0333
+[2023-05-24 02:24:04] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.347710362225771
+[2023-05-24 02:24:04] {main.py:174} INFO - save pth in epoch: 70
+[2023-05-24 02:24:04] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 02:24:04] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 02:24:04] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0167 Acc Z 0.1: 0.0317
+[2023-05-24 02:27:24] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3660090804596745
+[2023-05-24 02:27:25] {main.py:174} INFO - save pth in epoch: 71
+[2023-05-24 02:27:25] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 02:27:25] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 02:27:25] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0217 Acc Z 0.1: 0.0350
+[2023-05-24 02:30:46] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3101890028516454
+[2023-05-24 02:30:47] {main.py:174} INFO - save pth in epoch: 72
+[2023-05-24 02:30:47] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 02:30:47] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 02:30:47] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0233 Acc Z 0.1: 0.0383
+[2023-05-24 02:34:04] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.4028190813461943
+[2023-05-24 02:34:04] {main.py:174} INFO - save pth in epoch: 73
+[2023-05-24 02:34:04] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 02:34:05] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 02:34:05] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0183 Acc Z 0.1: 0.0317
+[2023-05-24 02:37:27] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3034977040688194
+[2023-05-24 02:37:28] {main.py:174} INFO - save pth in epoch: 74
+[2023-05-24 02:37:28] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0050 Acc X 0.1: 0.0050
+[2023-05-24 02:37:28] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 02:37:28] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0233 Acc Z 0.1: 0.0383
+[2023-05-24 02:40:48] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3330062707265222
+[2023-05-24 02:40:49] {main.py:174} INFO - save pth in epoch: 75
+[2023-05-24 02:40:49] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 02:40:49] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 02:40:49] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0367
+[2023-05-24 02:44:22] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.370367548962434
+[2023-05-24 02:44:22] {main.py:174} INFO - save pth in epoch: 76
+[2023-05-24 02:44:22] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 02:44:22] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 02:44:23] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0233 Acc Z 0.1: 0.0333
+[2023-05-24 02:47:49] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.352602472404639
+[2023-05-24 02:47:50] {main.py:174} INFO - save pth in epoch: 77
+[2023-05-24 02:47:50] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 02:47:50] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0000 Acc Y 0.1: 0.0033
+[2023-05-24 02:47:50] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0383
+[2023-05-24 02:51:14] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.343879137982925
+[2023-05-24 02:51:15] {main.py:174} INFO - save pth in epoch: 78
+[2023-05-24 02:51:15] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 02:51:15] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 02:51:15] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0267 Acc Z 0.1: 0.0350
+[2023-05-24 02:54:42] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.334506535877784
+[2023-05-24 02:54:42] {main.py:174} INFO - save pth in epoch: 79
+[2023-05-24 02:54:42] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 02:54:42] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 02:54:43] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0367
+[2023-05-24 02:58:16] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3385044562816617
+[2023-05-24 02:58:17] {main.py:174} INFO - save pth in epoch: 80
+[2023-05-24 02:58:17] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 02:58:17] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 02:58:17] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0367
+[2023-05-24 03:01:44] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.327274571210146
+[2023-05-24 03:01:44] {main.py:174} INFO - save pth in epoch: 81
+[2023-05-24 03:01:44] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 03:01:45] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 03:01:45] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0367
+[2023-05-24 03:05:02] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3154910049339135
+[2023-05-24 03:05:02] {main.py:174} INFO - save pth in epoch: 82
+[2023-05-24 03:05:02] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 03:05:02] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 03:05:02] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0367
+[2023-05-24 03:08:21] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3482138216495514
+[2023-05-24 03:08:22] {main.py:174} INFO - save pth in epoch: 83
+[2023-05-24 03:08:22] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 03:08:22] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 03:08:22] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0383
+[2023-05-24 03:11:35] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3503236676255863
+[2023-05-24 03:11:36] {main.py:174} INFO - save pth in epoch: 84
+[2023-05-24 03:11:36] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 03:11:36] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 03:11:36] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0383
+[2023-05-24 03:15:04] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.342234652290742
+[2023-05-24 03:15:04] {main.py:174} INFO - save pth in epoch: 85
+[2023-05-24 03:15:04] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 03:15:04] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 03:15:05] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0383
+[2023-05-24 03:18:03] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3294093307356043
+[2023-05-24 03:18:03] {main.py:174} INFO - save pth in epoch: 86
+[2023-05-24 03:18:03] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 03:18:03] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 03:18:03] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0367
+[2023-05-24 03:20:28] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3408013079563776
+[2023-05-24 03:20:29] {main.py:174} INFO - save pth in epoch: 87
+[2023-05-24 03:20:29] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 03:20:29] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 03:20:29] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0367
+[2023-05-24 03:22:56] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3294608379900454
+[2023-05-24 03:22:56] {main.py:174} INFO - save pth in epoch: 88
+[2023-05-24 03:22:56] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 03:22:56] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 03:22:56] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0383
+[2023-05-24 03:25:26] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3474823055167993
+[2023-05-24 03:25:26] {main.py:174} INFO - save pth in epoch: 89
+[2023-05-24 03:25:26] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 03:25:26] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 03:25:27] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0267 Acc Z 0.1: 0.0350
+[2023-05-24 03:28:00] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3370134496192136
+[2023-05-24 03:28:00] {main.py:174} INFO - save pth in epoch: 90
+[2023-05-24 03:28:00] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 03:28:01] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 03:28:01] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0383
+[2023-05-24 03:30:30] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3400685424109304
+[2023-05-24 03:30:31] {main.py:174} INFO - save pth in epoch: 91
+[2023-05-24 03:30:31] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 03:30:31] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 03:30:31] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0383
+[2023-05-24 03:33:11] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3354706730941936
+[2023-05-24 03:33:12] {main.py:174} INFO - save pth in epoch: 92
+[2023-05-24 03:33:12] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 03:33:12] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 03:33:12] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0367
+[2023-05-24 03:35:50] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3337483489016693
+[2023-05-24 03:35:51] {main.py:174} INFO - save pth in epoch: 93
+[2023-05-24 03:35:51] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 03:35:51] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 03:35:51] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0383
+[2023-05-24 03:38:35] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.341446650922298
+[2023-05-24 03:38:35] {main.py:174} INFO - save pth in epoch: 94
+[2023-05-24 03:38:35] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 03:38:36] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 03:38:36] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0367
+[2023-05-24 03:41:20] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3344718468685945
+[2023-05-24 03:41:21] {main.py:174} INFO - save pth in epoch: 95
+[2023-05-24 03:41:21] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 03:41:21] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 03:41:21] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0383
+[2023-05-24 03:44:09] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3399545604983962
+[2023-05-24 03:44:10] {main.py:174} INFO - save pth in epoch: 96
+[2023-05-24 03:44:10] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 03:44:10] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 03:44:10] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0383
+[2023-05-24 03:46:53] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.3370024617016316
+[2023-05-24 03:46:53] {main.py:174} INFO - save pth in epoch: 97
+[2023-05-24 03:46:53] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 03:46:53] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 03:46:54] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0383
+[2023-05-24 03:49:45] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.339603387564421
+[2023-05-24 03:49:46] {main.py:174} INFO - save pth in epoch: 98
+[2023-05-24 03:49:46] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 03:49:46] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 03:49:46] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0383
+[2023-05-24 03:52:38] {main.py:170} INFO - Best error mean:0.17763260200309255.  Error mean now:3.357238479554653
+[2023-05-24 03:52:39] {main.py:174} INFO - save pth in epoch: 99
+[2023-05-24 03:52:39] {plot_point_fig.py:16} INFO - Acc X 0.05: 0.0033 Acc X 0.1: 0.0050
+[2023-05-24 03:52:39] {plot_point_fig.py:30} INFO - Acc Y 0.05: 0.0017 Acc Y 0.1: 0.0033
+[2023-05-24 03:52:39] {plot_point_fig.py:44} INFO - Acc Z 0.05: 0.0250 Acc Z 0.1: 0.0350
