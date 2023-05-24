@@ -91,15 +91,15 @@ class SwinUnet_nocross(nn.Module):
         x_rgb, x_downsample_rgb = self.swin_unet_rgb(rgb)
         x_inf, x_downsample_inf = self.swin_unet_inf(inf)
 
-        x = []
-        out = self.cross_attention_0(tuple([x_downsample_rgb[0], x_downsample_inf[0]]))
-        x.append(self.down_sample_0(torch.cat((out, x_downsample_rgb[0], x_downsample_inf[0]), -1)))
-        out = self.cross_attention_1(tuple([x_downsample_rgb[1], x_downsample_inf[1]]))
-        x.append(self.down_sample_1(torch.cat((out, x_downsample_rgb[1], x_downsample_inf[1]), -1)))
-        out = self.cross_attention_2(tuple([x_downsample_rgb[2], x_downsample_inf[2]]))
-        x.append(self.down_sample_2(torch.cat((out, x_downsample_rgb[2], x_downsample_inf[2]), -1)))
+        # x = []
+        # out = self.cross_attention_0(tuple([x_downsample_rgb[0], x_downsample_inf[0]]))
+        # x.append(self.down_sample_0(torch.cat((out, x_downsample_rgb[0], x_downsample_inf[0]), -1)))
+        # out = self.cross_attention_1(tuple([x_downsample_rgb[1], x_downsample_inf[1]]))
+        # x.append(self.down_sample_1(torch.cat((out, x_downsample_rgb[1], x_downsample_inf[1]), -1)))
+        # out = self.cross_attention_2(tuple([x_downsample_rgb[2], x_downsample_inf[2]]))
+        # x.append(self.down_sample_2(torch.cat((out, x_downsample_rgb[2], x_downsample_inf[2]), -1)))
 
-        logits = self.swin_unet_up(x_rgb, x_inf, x)
+        logits = self.swin_unet_up(x_rgb, x_inf)
         out_x = logits[:, 0, :, :].unsqueeze(1)
         out_y = logits[:, 1, :, :].unsqueeze(1)
         out_z = logits[:, 2, :, :].unsqueeze(1)

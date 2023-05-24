@@ -1112,15 +1112,15 @@ class SwinTransformerSys_UP(nn.Module):
         return x, x_downsample
 
     # Dencoder and Skip connection
-    def forward_up_features(self, x, x_downsample):
+    def forward_up_features(self, x):
         x_upsample = []
         for inx, layer_up in enumerate(self.layers_up):
             if inx == 0:
                 x = layer_up(x)
                 x_upsample.append(x)
             else:
-                x = torch.cat([x, x_downsample[3 - inx]], -1)
-                x = self.concat_back_dim[inx](x)
+                # x = torch.cat([x, x_downsample[3 - inx]], -1)
+                # x = self.concat_back_dim[inx](x)
                 x = layer_up(x)
                 x_upsample.append(x)
 
@@ -1141,11 +1141,11 @@ class SwinTransformerSys_UP(nn.Module):
 
         return x
 
-    def forward(self, x_rgb, x_inf, cross_atten_x):
+    def forward(self, x_rgb, x_inf):
         x = torch.cat((x_rgb, x_inf), dim=-1)
         x = self.concat_rgb_inf(x)
 
-        x, x_upsample = self.forward_up_features(x, cross_atten_x)
+        x, x_upsample = self.forward_up_features(x)
         x = self.up_x4(x)
         return x
 
