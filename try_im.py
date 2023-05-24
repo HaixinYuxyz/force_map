@@ -3,6 +3,7 @@ import os
 import numpy as np
 import cv2
 from matplotlib import pyplot as plt
+from tqdm import tqdm
 import torch
 
 
@@ -49,8 +50,8 @@ def plot_point_fig(idx_list, plot_error_x, plot_error_y, plot_error_z, epoch, pa
 
 
 if __name__ == '__main__':
-    path = '/home/shoujie/Program/force_map_new/output/23_05_13_23_12_swinunet/'
-    for i in range(100):
+    path = '/home/shoujie/Program/force_map_new/output/23_05_23_23_16_fuse_swinunet_no_cross/'
+    for i in tqdm(range(100)):
         data_dict = np.load(os.path.join(path, 'error_{}.npy'.format(i)), allow_pickle=True).item()
         try:
             os.mkdir(os.path.join(path, 'statistical_data'))
