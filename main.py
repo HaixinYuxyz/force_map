@@ -66,10 +66,10 @@ def train(net, criterion, train_dataloader, valid_dataloader, device, batch_size
 
     print('training on:', device)
     net.to(device)
-
+    iter_per_train = len(train_dataloader)
     optimizer = torch.optim.AdamW((param for param in net.parameters() if param.requires_grad), lr=lr, betas=(0.9, 0.999), weight_decay=0.01)
-    warm_up_with_multistep_lr = lambda epoch: epoch / (20 * 225) if epoch <= (20 * 225) else 0.4 ** len(
-        [m for m in [40 * 225, 60 * 225, 80 * 225, 90 * 225] if m <= epoch])
+    warm_up_with_multistep_lr = lambda epoch: epoch / (20 * iter_per_train) if epoch <= (20 * iter_per_train) else 0.4 ** len(
+        [m for m in [40 * iter_per_train, 60 * iter_per_train, 80 * iter_per_train, 90 * iter_per_train] if m <= epoch])
     scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=warm_up_with_multistep_lr)
 
     tb = tensorboardX.SummaryWriter(stats_dir)
@@ -82,7 +82,7 @@ def train(net, criterion, train_dataloader, valid_dataloader, device, batch_size
 
         net.train()
         for batch in tqdm(train_dataloader, desc='training'):
-            rgb, inf, targets, mask, _ = batch
+            rgb, inf, targets, mask, real_force, d_type, max_min_force = batch
             rgb = rgb.to(device)
             inf = inf.to(device)
             labels = [target.to(device) for target in targets]
@@ -114,8 +114,9 @@ def train(net, criterion, train_dataloader, valid_dataloader, device, batch_size
         idx_list = []
         with torch.no_grad():
             for idx, batch in tqdm(enumerate(valid_dataloader), desc='valling'):
-                rgb, inf, targets, mask, real_force = batch
+                rgb, inf, targets, mask, real_force, d_type, max_min_force = batch
                 real_force = [force.to(device) for force in real_force]
+                max_min_force = [max_min.to(device) for max_min in max_min_force]
                 rgb = rgb.to(device)
                 inf = inf.to(device)
                 mask = mask.to(device)
@@ -130,10 +131,14 @@ def train(net, criterion, train_dataloader, valid_dataloader, device, batch_size
 
                 real_x, real_y, real_z = real_force
 
-                pred_x = (torch.sum(mask * output[0]) / torch.sum(mask)) * (1.1671 + 1.4656) - 1.4656
-                pred_y = (torch.sum(mask * output[1]) / torch.sum(mask)) * (0.9182 + 1.6964) - 0.9182
-                pred_z = -((torch.sum(mask * output[2]) / torch.sum(mask)) * (4.0909 - 1.5137) + 1.5137)
-
+                if d_type[0] == 'new':
+                    pred_x = (torch.sum(mask * output[0]) / torch.sum(mask)) * (max_min_force[0] - max_min_force[1]) + max_min_force[1]
+                    pred_y = (torch.sum(mask * output[1]) / torch.sum(mask)) * (max_min_force[2] - max_min_force[3]) + max_min_force[3]
+                    pred_z = (torch.sum(mask * output[2]) / torch.sum(mask)) * (max_min_force[4] - max_min_force[5]) + max_min_force[5]
+                else:
+                    pred_x = (torch.sum(mask * output[0]) / torch.sum(mask)) * (1.1671 + 1.4656) - 1.4656
+                    pred_y = (torch.sum(mask * output[1]) / torch.sum(mask)) * (0.9182 + 1.6964) - 0.9182
+                    pred_z = -((torch.sum(mask * output[2]) / torch.sum(mask)) * (4.0909 - 1.5137) + 1.5137)
                 error_x = torch.abs(real_x - pred_x)
                 error_y = torch.abs(real_y - pred_y)
                 error_z = torch.abs(real_z - pred_z)
@@ -218,9 +223,10 @@ if __name__ == "__main__":
     torch.manual_seed(42)
     torch.cuda.manual_seed(42)
     torch.cuda.manual_seed_all(42)
-    data_path = "dataset/force_mask"
+    data_path = "dataset/new_force_mask"
+    dataset_type = 'new'
     checkout_path = "backbones/cifar10_swin_t_deformable_best_model_backbone.pt"
-    batch_size = 24
+    batch_size = 32
     img_shape = (256, 256)
     epoch = 100
     lr = 0.001
@@ -228,20 +234,20 @@ if __name__ == "__main__":
     num_workers = 0
     train_dataset_per = 1
     val_dataset_per = 1
-    net_name = 'fuse_swinunet_no_cross'  # transforce
+    net_name = 'fuseswinunet'  # transforce
 
     dt = datetime.datetime.now().strftime('%y_%m_%d_%H_%M')
-    save_folder = os.path.join('./output', dt + '_{}'.format(net_name))
+    save_folder = os.path.join('./output', dt + '_{}'.format(net_name + '_new_dataset'))
 
     stats_dir = save_folder
     if not os.path.exists(stats_dir):
         os.makedirs(stats_dir)
     logger = log_creater(stats_dir)
 
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    dataset = ForceData(data_path)
+    device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
+    dataset = ForceData(data_path, dataset_type)
 
-    train_dataloader, val_dataloader = split_dataset(dataset, 0.9, batch_size, num_workers, train_dataset_per, val_dataset_per)
+    train_dataloader, val_dataloader = split_dataset(dataset, 0.8, batch_size, num_workers, train_dataset_per, val_dataset_per)
 
     net = get_network(network_name=net_name, logger=logger)
 

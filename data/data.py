@@ -151,18 +151,43 @@ seq = iaa.Sequential([
 
 
 class ForceData(Dataset):
-    def __init__(self, data_path) -> None:
+    def __init__(self, data_path, dataset_type) -> None:
         super().__init__()
-        self.force = get_txt_data(os.path.join(data_path, 'data_force.txt'))  # x:-1.4656 1.1671 y: -0.9182 1.6964 z: -4.0909 -1.5137
-        self.torque = get_txt_data(os.path.join(data_path, 'data_torque.txt'))
-        self.rgb = glob(os.path.join(data_path, "rgb_cut", "*.jpg"))
-        self.inf = glob(os.path.join(data_path, "inf_cut", "*.jpg"))
-        self.lable = glob(os.path.join(data_path, "rgb_mask", "*.jpg"))
-        self.rgb.sort()
-        self.inf.sort()
-        self.lable.sort()
+        self.dataset_type = dataset_type
+        if dataset_type == 'old':
+            self.force = get_txt_data(os.path.join(data_path, 'data_force.txt'))  # x:-1.4656 1.1671 y: -0.9182 1.6964 z: -4.0909 -1.5137
+            self.torque = get_txt_data(os.path.join(data_path, 'data_torque.txt'))
+            self.rgb = glob(os.path.join(data_path, "rgb_cut", "*.jpg"))
+            self.inf = glob(os.path.join(data_path, "inf_cut", "*.jpg"))
+            self.lable = glob(os.path.join(data_path, "rgb_mask", "*.jpg"))
+            self.rgb.sort()
+            self.inf.sort()
+            self.lable.sort()
+        elif dataset_type == 'new':
+            self.force = np.array([]).reshape(-1, 3)
+            self.torque = np.array([]).reshape(-1, 3)
+            self.rgb = []
+            self.inf = []
+            self.lable = []
+            for file_folder in glob(os.path.join(data_path, '*')):
+                self.force = np.append(self.force, get_txt_data(os.path.join(file_folder, 'data_force.txt')), axis=0)
+                self.torque = np.append(self.torque, get_txt_data(os.path.join(file_folder, 'data_torque.txt')), axis=0)
+                rgb = glob(os.path.join(file_folder, "rgb_cut", "*.jpg"))
+                rgb.sort()
+                self.rgb.extend(rgb)
+                inf = glob(os.path.join(file_folder, "inf_cut", "*.jpg"))
+                inf.sort()
+                self.inf.extend(inf)
+                label = glob(os.path.join(file_folder, "rgb_mask", "*.jpg"))
+                label.sort()
+                self.lable.extend(label)
         self.transform = seq
-
+        self.force_max_x = np.max(self.force[:, 0])
+        self.force_min_x = np.min(self.force[:, 0])
+        self.force_max_y = np.max(self.force[:, 1])
+        self.force_min_y = np.min(self.force[:, 1])
+        self.force_max_z = np.max(self.force[:, 2])
+        self.force_min_z = np.min(self.force[:, 2])
         self.scale = [1, 1, 1]
 
         self.transform1 = T.Compose([
@@ -216,16 +241,21 @@ class ForceData(Dataset):
         rgb = cv2.resize(cv2.imread(self.rgb[index]), (224, 224))
         mask = cv2.resize(cv2.imread(self.lable[index], cv2.IMREAD_GRAYSCALE), (224, 224)) / 255.
 
-        # mask = SegmentationMapsOnImage(mask, shape=inf.shape)
-        # inf, mask = self.transform(image=inf, segmentation_maps=mask)
-        # mask = mask.draw(size=mask.shape[:2])[0][:, :, 0] / mask.draw(size=mask.shape[:2])[0][:, :, 0].max()
-        # x:-1.4656 1.1671 y: -0.9182 1.6964 z: -4.0909 -1.5137
-        x_force = mask * self.force[index][0] / self.scale[0]
-        x_force = (x_force + 1.4656) / (1.1671 + 1.4656) * mask
-        y_force = mask * self.force[index][1] / self.scale[1]
-        y_force = (y_force + 0.9182) / (0.9182 + 1.6964) * mask
-        z_force = mask * (-self.force[index][2]) / self.scale[2]
-        z_force = (z_force - 1.5137) / (4.0909 - 1.5137) * mask
+        if self.dataset_type == 'old':
+            x_force = mask * self.force[index][0] / self.scale[0]
+            x_force = (x_force + 1.4656) / (1.1671 + 1.4656) * mask
+            y_force = mask * self.force[index][1] / self.scale[1]
+            y_force = (y_force + 0.9182) / (0.9182 + 1.6964) * mask
+            z_force = mask * (-self.force[index][2]) / self.scale[2]
+            z_force = (z_force - 1.5137) / (4.0909 - 1.5137) * mask
+        else:
+            x_force = mask * self.force[index][0] / self.scale[0]
+            x_force = (x_force - self.force_min_x) / (self.force_max_x - self.force_min_x) * mask
+            y_force = mask * self.force[index][1] / self.scale[1]
+            y_force = (y_force - self.force_min_y) / (self.force_max_y - self.force_min_y) * mask
+            z_force = mask * (self.force[index][2]) / self.scale[2]
+            z_force = (z_force - self.force_min_z) / (self.force_max_z - self.force_min_z) * mask
+
 
         inf = transforms.ToTensor()(np.ascontiguousarray(inf))
         rgb = transforms.ToTensor()(np.ascontiguousarray(rgb))
@@ -235,7 +265,9 @@ class ForceData(Dataset):
         mask = transforms.ToTensor()(np.ascontiguousarray(mask))
 
         return rgb.to(torch.float32), inf.to(torch.float32), (force_map_x.to(torch.float32), force_map_y.to(torch.float32), force_map_z.to(torch.float32)), mask.to(
-            torch.float32), (self.force[index][0], self.force[index][1], self.force[index][2])
+            torch.float32), (self.force[index][0], self.force[index][1], self.force[index][2]), self.dataset_type, [self.force_max_x, self.force_min_x,
+                                                                                                                    self.force_max_y, self.force_min_y,
+                                                                                                                    self.force_max_z, self.force_min_z]
 
     def __len__(self):
         return len(self.inf)
