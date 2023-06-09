@@ -9,6 +9,7 @@ from imgaug import augmenters as iaa
 import imgaug as ia
 from torchvision import transforms
 from imgaug.augmentables.segmaps import SegmentationMapsOnImage
+import numpy.matlib
 
 
 def get_txt_data(path):
@@ -155,7 +156,7 @@ class ForceData(Dataset):
         super().__init__()
         self.dataset_type = dataset_type
         if dataset_type == 'old':
-            self.force = get_txt_data(os.path.join(data_path, 'data_force.txt'))  # x:-1.4656 1.1671 y: -0.9182 1.6964 z: -4.0909 -1.5137
+            self.force = get_txt_data(os.path.join(data_path, 'data_force.txt'))
             self.torque = get_txt_data(os.path.join(data_path, 'data_torque.txt'))
             self.rgb = glob(os.path.join(data_path, "rgb_cut", "*.jpg"))
             self.inf = glob(os.path.join(data_path, "inf_cut", "*.jpg"))
@@ -235,27 +236,76 @@ class ForceData(Dataset):
         else:
             return default
 
+    def gauss_transformation(self, pos_img, center):
+        center_x, center_y = center[0], center[1]
+        IMAGE_HEIGHT = pos_img.shape[0]
+        IMAGE_WIDTH = pos_img.shape[1]
+        R = 0.5 * 50
+        mask_x = np.matlib.repmat(center_x, IMAGE_HEIGHT, IMAGE_WIDTH)
+        mask_y = np.matlib.repmat(center_y, IMAGE_HEIGHT, IMAGE_WIDTH)
+
+        x1 = np.arange(IMAGE_WIDTH)
+        x_map = np.matlib.repmat(x1, IMAGE_HEIGHT, 1)
+
+        y1 = np.arange(IMAGE_HEIGHT)
+        y_map = np.matlib.repmat(y1, IMAGE_WIDTH, 1)
+        y_map = np.transpose(y_map)
+
+        Gauss_map = np.sqrt((x_map - mask_x) ** 2 + (y_map - mask_y) ** 2)
+
+        Gauss_map = np.exp(-0.5 * Gauss_map / R)
+        guess_img = pos_img * Gauss_map
+        return guess_img
+
+    def find_max_region(self, mask_sel):
+        contours, hierarchy = cv2.findContours(mask_sel, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+
+        # 找到最大区域并填充
+        area = []
+
+        for j in range(len(contours)):
+            area.append(cv2.contourArea(contours[j]))
+
+        max_idx = np.argmax(area)
+
+        max_area = cv2.contourArea(contours[max_idx])
+
+        for k in range(len(contours)):
+
+            if k != max_idx:
+                cv2.fillPoly(mask_sel, [contours[k]], 0)
+        return mask_sel
+
+    def get_mask_center(self, cnt):
+        M = cv2.moments(cnt)
+        if M["m00"] != 0:
+            cX = int(M["m10"] / M["m00"])
+            cY = int(M["m01"] / M["m00"])
+        else:
+            M["m00"] = 1
+            cX = int(M["m10"] / M["m00"])
+            cY = int(M["m01"] / M["m00"])
+        return (cX, cY)
+
     def __getitem__(self, index):
 
         inf = cv2.resize(cv2.imread(self.inf[index]), (224, 224))
         rgb = cv2.resize(cv2.imread(self.rgb[index]), (224, 224))
-        mask = cv2.resize(cv2.imread(self.lable[index], cv2.IMREAD_GRAYSCALE), (224, 224)) / 255.
+        mask = cv2.resize(cv2.imread(self.lable[index], cv2.IMREAD_GRAYSCALE), (224, 224))
 
-        if self.dataset_type == 'old':
-            x_force = mask * self.force[index][0] / self.scale[0]
-            x_force = (x_force + 1.4656) / (1.1671 + 1.4656) * mask
-            y_force = mask * self.force[index][1] / self.scale[1]
-            y_force = (y_force + 0.9182) / (0.9182 + 1.6964) * mask
-            z_force = mask * (-self.force[index][2]) / self.scale[2]
-            z_force = (z_force - 1.5137) / (4.0909 - 1.5137) * mask
-        else:
-            x_force = mask * self.force[index][0] / self.scale[0]
-            x_force = (x_force - self.force_min_x) / (self.force_max_x - self.force_min_x) * mask
-            y_force = mask * self.force[index][1] / self.scale[1]
-            y_force = (y_force - self.force_min_y) / (self.force_max_y - self.force_min_y) * mask
-            z_force = mask * (self.force[index][2]) / self.scale[2]
-            z_force = (z_force - self.force_min_z) / (self.force_max_z - self.force_min_z) * mask
+        thresh, img = cv2.threshold(mask, 127, 255, cv2.THRESH_BINARY)
+        img = self.find_max_region(img)
+        cnt = cv2.findContours(img.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[-2]
+        center = self.get_mask_center(cnt[0])
+        mask = mask / 255.
+        mask_gauss = self.gauss_transformation(mask, center)
 
+        x_force = mask * self.force[index][0]
+        x_force = (x_force - self.force_min_x) / (self.force_max_x - self.force_min_x) * mask_gauss
+        y_force = mask * self.force[index][1]
+        y_force = (y_force - self.force_min_y) / (self.force_max_y - self.force_min_y) * mask_gauss
+        z_force = mask * (self.force[index][2])
+        z_force = (z_force - self.force_min_z) / (self.force_max_z - self.force_min_z) * mask_gauss
 
         inf = transforms.ToTensor()(np.ascontiguousarray(inf))
         rgb = transforms.ToTensor()(np.ascontiguousarray(rgb))
@@ -263,11 +313,15 @@ class ForceData(Dataset):
         force_map_y = transforms.ToTensor()(np.ascontiguousarray(y_force))
         force_map_z = transforms.ToTensor()(np.ascontiguousarray(z_force))
         mask = transforms.ToTensor()(np.ascontiguousarray(mask))
+        mask_gauss = transforms.ToTensor()(np.ascontiguousarray(mask_gauss))
 
         return rgb.to(torch.float32), inf.to(torch.float32), (force_map_x.to(torch.float32), force_map_y.to(torch.float32), force_map_z.to(torch.float32)), mask.to(
-            torch.float32), (self.force[index][0], self.force[index][1], self.force[index][2]), self.dataset_type, [self.force_max_x, self.force_min_x,
-                                                                                                                    self.force_max_y, self.force_min_y,
-                                                                                                                    self.force_max_z, self.force_min_z]
+            torch.float32), mask_gauss.to(torch.float32), (self.force[index][0], self.force[index][1], self.force[index][2]), self.dataset_type, [self.force_max_x,
+                                                                                                                                                  self.force_min_x,
+                                                                                                                                                  self.force_max_y,
+                                                                                                                                                  self.force_min_y,
+                                                                                                                                                  self.force_max_z,
+                                                                                                                                                  self.force_min_z]
 
     def __len__(self):
         return len(self.inf)
