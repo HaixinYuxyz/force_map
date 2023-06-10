@@ -159,6 +159,7 @@ def train(net, criterion, train_dataloader, valid_dataloader, device, batch_size
         plot_error_y = []
         plot_error_z = []
 
+
         error_guass_max = {'error_x': [], 'error_y': [], 'error_z': []}
 
         error_guass_delta = {'mask_pix': [], 'a1_x': [], 'a2_x': [], 'a3_x': [], 'a1_y': [], 'a2_y': [], 'a3_y': [], 'a1_z': [], 'a2_z': [], 'a3_z': []}
