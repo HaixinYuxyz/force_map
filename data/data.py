@@ -10,6 +10,76 @@ import imgaug as ia
 from torchvision import transforms
 from imgaug.augmentables.segmaps import SegmentationMapsOnImage
 import numpy.matlib
+import pandas
+import math
+
+
+def read_tablemethod(filename):
+    data = pandas.read_table(filename, header=None, delim_whitespace=True)
+    return data
+
+
+def get_radius_model(data_path):
+    radius_model_dict = {}
+    for radius in [0.5, 1, 1.5, 2, 2.5, 3]:
+        temp_dict = {}
+        for axis in ['x', 'y', 'z']:
+            force_xyz = axis
+            data = read_tablemethod(os.path.join(data_path, 'new_map', '{}.txt'.format(radius)))
+            if force_xyz == "x" or force_xyz == "y":
+                idx = 2
+            else:
+                idx = 3
+            res = []
+            k = len(data[idx].values)
+            for i in range(0, k):
+                if float(data[idx].values[i]) != 0:
+                    num = round(data[idx].values[i] / 1000, 4)
+                    res.append(num)
+            m = len(res)
+            fit_id = np.arange(-(m - 1) / 2, (m + 1) / 2)
+            z1 = np.polyfit(fit_id, res, 10)
+            p1 = np.poly1d(z1)
+            model_img = np.zeros((m, m))
+            for i in range(0, m):
+                for j in range(0, m):
+                    dis = math.sqrt(abs((i - m / 2) * (i - m / 2)) + abs((j - m / 2) * (j - m / 2)))
+                    if dis > (m - 1) / 2:
+                        model_img[i][j] = 0
+                    else:
+                        model_img[i][j] = abs(p1(dis))
+            temp_dict.update({axis: model_img})
+        radius_model_dict.update({str(radius): temp_dict})
+    return radius_model_dict
+
+
+def picture_trans(force_xyz, mask, model_img_x, model_img_y, model_img_z):
+    contours, hier = cv2.findContours(mask.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    for c in contours:
+        if cv2.contourArea(c) < 200:
+            continue
+        x, y, w, h = cv2.boundingRect(c)
+        if w > h:
+            h = w
+        else:
+            w = h
+    resized_x = cv2.resize(model_img_x, (w, w), interpolation=cv2.INTER_AREA)
+    resized_y = cv2.resize(model_img_y, (w, w), interpolation=cv2.INTER_AREA)
+    resized_z = cv2.resize(model_img_z, (w, w), interpolation=cv2.INTER_AREA)
+
+    force_x = np.zeros_like(mask)
+    force_x[y:y + w, x:x + w] = resized_x
+    force_x = force_x / np.max(model_img_x) * force_xyz[0]
+
+    force_y = np.zeros_like(mask)
+    force_y[y:y + w, x:x + w] = resized_y
+    force_y = force_y / np.max(model_img_y) * force_xyz[1]
+
+    force_z = np.zeros_like(mask)
+    force_z[y:y + w, x:x + w] = resized_z
+    force_z = force_z / np.max(model_img_z) * force_xyz[2]
+
+    return force_x, force_y, force_z
 
 
 def get_txt_data(path):
@@ -171,17 +241,18 @@ class ForceData(Dataset):
             self.inf = []
             self.lable = []
             for file_folder in glob(os.path.join(data_path, '*')):
-                self.force = np.append(self.force, get_txt_data(os.path.join(file_folder, 'data_force.txt')), axis=0)
-                self.torque = np.append(self.torque, get_txt_data(os.path.join(file_folder, 'data_torque.txt')), axis=0)
-                rgb = glob(os.path.join(file_folder, "rgb_cut", "*.jpg"))
-                rgb.sort()
-                self.rgb.extend(rgb)
-                inf = glob(os.path.join(file_folder, "inf_cut", "*.jpg"))
-                inf.sort()
-                self.inf.extend(inf)
-                label = glob(os.path.join(file_folder, "rgb_mask", "*.jpg"))
-                label.sort()
-                self.lable.extend(label)
+                if os.path.split(file_folder)[1] != 'new_map' and os.path.split(file_folder)[1] != 'force_map':
+                    self.force = np.append(self.force, get_txt_data(os.path.join(file_folder, 'data_force.txt')), axis=0)
+                    self.torque = np.append(self.torque, get_txt_data(os.path.join(file_folder, 'data_torque.txt')), axis=0)
+                    rgb = glob(os.path.join(file_folder, "rgb_cut", "*.jpg"))
+                    rgb.sort()
+                    self.rgb.extend(rgb)
+                    inf = glob(os.path.join(file_folder, "inf_cut", "*.jpg"))
+                    inf.sort()
+                    self.inf.extend(inf)
+                    label = glob(os.path.join(file_folder, "mask", "*.jpg"))
+                    label.sort()
+                    self.lable.extend(label)
         self.transform = seq
         self.force_max_x = np.max(self.force[:, 0])
         self.force_min_x = np.min(self.force[:, 0])
@@ -190,6 +261,8 @@ class ForceData(Dataset):
         self.force_max_z = np.max(self.force[:, 2])
         self.force_min_z = np.min(self.force[:, 2])
         self.scale = [1, 1, 1]
+
+        self.radius_model = get_radius_model(data_path)
 
         self.transform1 = T.Compose([
             T.ToPILImage(),
@@ -289,23 +362,32 @@ class ForceData(Dataset):
 
     def __getitem__(self, index):
 
-        inf = cv2.resize(cv2.imread(self.inf[index]), (224, 224))
-        rgb = cv2.resize(cv2.imread(self.rgb[index]), (224, 224))
-        mask = cv2.resize(cv2.imread(self.lable[index], cv2.IMREAD_GRAYSCALE), (224, 224))
-
+        # 处理mask
+        mask = cv2.imread(self.lable[index], cv2.IMREAD_GRAYSCALE)
         thresh, img = cv2.threshold(mask, 127, 255, cv2.THRESH_BINARY)
         img = self.find_max_region(img)
         cnt = cv2.findContours(img.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[-2]
-        center = self.get_mask_center(cnt[0])
+        # center = self.get_mask_center(cnt[0])
         mask = mask / 255.
-        mask_gauss = self.gauss_transformation(mask, center)
+        path_split = self.inf[index].split('/')[2][4:]
+        x_force, y_force, z_force = picture_trans(self.force[index], mask, self.radius_model[path_split]['x'], self.radius_model[path_split]['y'],
+                                                  self.radius_model[path_split]['z'])
 
-        x_force = mask * self.force[index][0]
-        x_force = (x_force - self.force_min_x) / (self.force_max_x - self.force_min_x) * mask_gauss
-        y_force = mask * self.force[index][1]
-        y_force = (y_force - self.force_min_y) / (self.force_max_y - self.force_min_y) * mask_gauss
-        z_force = mask * (self.force[index][2])
-        z_force = (z_force - self.force_min_z) / (self.force_max_z - self.force_min_z) * mask_gauss
+        inf = cv2.resize(cv2.imread(self.inf[index]), (224, 224))
+        rgb = cv2.resize(cv2.imread(self.rgb[index]), (224, 224))
+        x_force = cv2.resize(x_force, (224, 224))
+        y_force = cv2.resize(y_force, (224, 224))
+        z_force = cv2.resize(z_force, (224, 224))
+        mask = cv2.resize(mask, (224, 224))
+
+        # mask_gauss = self.gauss_transformation(mask, center)
+
+        # x_force = mask * self.force[index][0]
+        x_force = (x_force - self.force_min_x) / (self.force_max_x - self.force_min_x)
+        # y_force = mask * self.force[index][1]
+        y_force = (y_force - self.force_min_y) / (self.force_max_y - self.force_min_y)
+        # z_force = mask * (self.force[index][2])
+        z_force = (z_force - self.force_min_z) / (self.force_max_z - self.force_min_z)
 
         inf = transforms.ToTensor()(np.ascontiguousarray(inf))
         rgb = transforms.ToTensor()(np.ascontiguousarray(rgb))
@@ -313,15 +395,16 @@ class ForceData(Dataset):
         force_map_y = transforms.ToTensor()(np.ascontiguousarray(y_force))
         force_map_z = transforms.ToTensor()(np.ascontiguousarray(z_force))
         mask = transforms.ToTensor()(np.ascontiguousarray(mask))
-        mask_gauss = transforms.ToTensor()(np.ascontiguousarray(mask_gauss))
+        # mask_gauss = transforms.ToTensor()(np.ascontiguousarray(mask_gauss))
 
         return rgb.to(torch.float32), inf.to(torch.float32), (force_map_x.to(torch.float32), force_map_y.to(torch.float32), force_map_z.to(torch.float32)), mask.to(
-            torch.float32), mask_gauss.to(torch.float32), (self.force[index][0], self.force[index][1], self.force[index][2]), self.dataset_type, [self.force_max_x,
-                                                                                                                                                  self.force_min_x,
-                                                                                                                                                  self.force_max_y,
-                                                                                                                                                  self.force_min_y,
-                                                                                                                                                  self.force_max_z,
-                                                                                                                                                  self.force_min_z]
+            torch.float32), (self.force[index][0], self.force[index][1], self.force[index][2]), self.dataset_type, [self.force_max_x,
+                                                                                                                    self.force_min_x,
+                                                                                                                    self.force_max_y,
+                                                                                                                    self.force_min_y,
+                                                                                                                    self.force_max_z,
+                                                                                                                    self.force_min_z], \
+               torch.tensor([torch.max(force_map_x), torch.max(force_map_y), torch.max(force_map_y)])
 
     def __len__(self):
         return len(self.inf)

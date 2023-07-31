@@ -23,7 +23,7 @@ parser.add_argument('--deterministic', type=int, default=1,
 parser.add_argument('--base_lr', type=float, default=0.01,
                     help='segmentation network learning rate')
 parser.add_argument('--img_size', type=int,
-                    default=256, help='input patch size of network input')
+                    default=224, help='input patch size of network input')
 parser.add_argument('--cfg', default='model/SwinUnet/swin_tiny_patch4_window7_224_lite.yaml', type=str, metavar="FILE", help='path to config file', )
 parser.add_argument(
     "--opts",

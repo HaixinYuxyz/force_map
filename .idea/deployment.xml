@@ -5,18 +5,25 @@
       <paths name="shoujie@10.8.14.231:22 password">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="shoujie@10.8.14.231:22 password (1)">
-        <serverdata>
-          <mappings>
             <mapping deploy="/home/shoujie/Program/force_map_new" local="$PROJECT_DIR$" />
           </mappings>
           <excludedPaths>
             <excludedPath path="/home/shoujie/Program/force_map_new/output" />
           </excludedPaths>
+        </serverdata>
+      </paths>
+      <paths name="yhx21@10.103.12.50:9123 password">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="yhx21@10.103.12.50:9123 password (1)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
         </serverdata>
       </paths>
     </serverData>

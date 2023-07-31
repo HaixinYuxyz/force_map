@@ -44,3 +44,9 @@ def get_network(network_name, logger):
         args, config = get_all_config()
         net = SwinUnet_nocross(config, img_size=args.img_size, num_classes=args.num_classes)
         return net
+    elif network_name == 'swin_uper':
+        from .Swin_Uper.SwinDRNet import SwinDRNet
+        from .Swin_Uper.config import get_config
+        config = get_config()
+        net = SwinDRNet(config, img_size=config.DATA.IMG_SIZE, num_classes=config.DATA.NUMCLASSES).cuda()
+        return net

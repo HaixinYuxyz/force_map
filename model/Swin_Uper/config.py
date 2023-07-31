@@ -10,9 +10,7 @@ import yaml
 from yacs.config import CfgNode as CN
 
 _C = CN()
-
 # Base config files
-_C.BASE = ['']
 
 # -----------------------------------------------------------------------------
 # Data settings
@@ -24,6 +22,10 @@ _C.DATA.BATCH_SIZE = 128
 _C.DATA.DATA_PATH = ''
 # Dataset name
 _C.DATA.DATASET = 'imagenet'
+_C.DATA.TRAIN_SET_PATH = ''
+_C.DATA.VAL_SET_PATH = ''
+_C.DATA.TEST_SET_PATH = ''
+_C.DATA.NUMCLASSES = 9
 # Input image size
 _C.DATA.IMG_SIZE = 224
 # Interpolation to resize image (random, bilinear, bicubic)
@@ -37,6 +39,21 @@ _C.DATA.CACHE_MODE = 'part'
 _C.DATA.PIN_MEMORY = True
 # Number of data loading threads
 _C.DATA.NUM_WORKERS = 8
+# 相机内参
+_C.DATA.SIM_CAMERA_PARAM_FX = 1137.77783203125
+_C.DATA.SIM_CAMERA_PARAM_FY = 1137.77783203125
+_C.DATA.SIM_CAMERA_PARAM_CX = 640.0
+_C.DATA.SIM_CAMERA_PARAM_CY = 360.0
+# 图片尺寸
+_C.DATA.PIC_ORIN_W = 1280
+_C.DATA.PIC_ORIN_H = 720
+_C.DATA.PIC_RESIZED_W = 224
+_C.DATA.PIC_RESIZED_H = 224
+_C.DATA.IGNORE_TRAIN_OBJ = ['']
+_C.DATA.IGNORE_VAL_OBJ = ['']
+_C.DATA.IGNORE_TEST_OBJ = ['']
+
+
 
 # -----------------------------------------------------------------------------
 # Model settings
@@ -45,7 +62,7 @@ _C.MODEL = CN()
 # Model type
 _C.MODEL.TYPE = 'swin'
 # Model name
-_C.MODEL.NAME = 'swin_tiny_patch4_window7_224'
+_C.MODEL.NAME = ''
 # Checkpoint to resume, could be overwritten by command line argument
 _C.MODEL.PRETRAIN_CKPT = './pretrained_ckpt/swin_tiny_patch4_window7_224.pth'
 _C.MODEL.RESUME = ''
@@ -72,7 +89,8 @@ _C.MODEL.SWIN.QKV_BIAS = True
 _C.MODEL.SWIN.QK_SCALE = None
 _C.MODEL.SWIN.APE = False
 _C.MODEL.SWIN.PATCH_NORM = True
-_C.MODEL.SWIN.FINAL_UPSAMPLE= "expand_first"
+_C.MODEL.SWIN.FINAL_UPSAMPLE = "expand_first"
+_C.MODEL.DECODE_MODE = 'multi_head'
 
 # -----------------------------------------------------------------------------
 # Training settings
@@ -80,6 +98,7 @@ _C.MODEL.SWIN.FINAL_UPSAMPLE= "expand_first"
 _C.TRAIN = CN()
 _C.TRAIN.START_EPOCH = 0
 _C.TRAIN.EPOCHS = 300
+_C.TRAIN.MILESTONES = []
 _C.TRAIN.WARMUP_EPOCHS = 20
 _C.TRAIN.WEIGHT_DECAY = 0.05
 _C.TRAIN.BASE_LR = 5e-4
@@ -113,6 +132,13 @@ _C.TRAIN.OPTIMIZER.EPS = 1e-8
 _C.TRAIN.OPTIMIZER.BETAS = (0.9, 0.999)
 # SGD momentum
 _C.TRAIN.OPTIMIZER.MOMENTUM = 0.9
+_C.TRAIN.PERCENTAGE_DATA_FOR_TRAIN = 1.0
+_C.TRAIN.NUM_GPUS = 1
+_C.TRAIN.DETERMINISTIC = 1
+# local rank for DistributedDataParallel, given by command line argument
+_C.TRAIN.LOCAL_RANK = 0
+_C.TRAIN.SEED = 1234
+_C.TRAIN.TAG = ''
 
 # -----------------------------------------------------------------------------
 # Augmentation settings
@@ -147,29 +173,24 @@ _C.AUG.MIXUP_MODE = 'batch'
 _C.TEST = CN()
 # Whether to use center crop when testing
 _C.TEST.CROP = True
+_C.TEST.VAL_DATA_TYPE = 'sim/real'
+_C.TEST.EVAL_ONLY = False
+_C.TEST.PERCENTAGE_DATA_FOR_VAL = 1.0
+_C.TEST.PERCENTAGE_DATA_FOR_TEST = 1.0
+_C.TEST.VAL_INTERATION_INTERVAL = 5000
+_C.TEST.THROUGHPUT_MODE = False
 
 # -----------------------------------------------------------------------------
-# Misc
+# Output settings
 # -----------------------------------------------------------------------------
-# Mixed precision opt level, if O0, no amp is used ('O0', 'O1', 'O2')
-# overwritten by command line argument
-_C.AMP_OPT_LEVEL = ''
-# Path to output folder, overwritten by command line argument
-_C.OUTPUT = ''
-# Tag of experiment, overwritten by command line argument
-_C.TAG = 'default'
+
+_C.OUTPUT = CN()
+_C.OUTPUT.OUTPUT_DIR = ''
 # Frequency to save checkpoint
-_C.SAVE_FREQ = 1
+_C.OUTPUT.SAVE_FREQ = 1
 # Frequency to logging info
-_C.PRINT_FREQ = 10
-# Fixed random seed
-_C.SEED = 0
-# Perform evaluation only, overwritten by command line argument
-_C.EVAL_MODE = False
-# Test throughput only, overwritten by command line argument
-_C.THROUGHPUT_MODE = False
-# local rank for DistributedDataParallel, given by command line argument
-_C.LOCAL_RANK = 0
+_C.OUTPUT.PRINT_FREQ = 10
+_C.OUTPUT.CHECKPOINT_SAVE_PATH = 'models'
 
 
 def _update_config_from_file(config, cfg_file):
@@ -187,43 +208,16 @@ def _update_config_from_file(config, cfg_file):
     config.freeze()
 
 
-def update_config(config, args):
-    _update_config_from_file(config, args.cfg)
-
-    config.defrost()
-    if args.opts:
-        config.merge_from_list(args.opts)
-
-    # merge from specific arguments
-    if args.batch_size:
-        config.DATA.BATCH_SIZE = args.batch_size
-    if args.zip:
-        config.DATA.ZIP_MODE = True
-    if args.cache_mode:
-        config.DATA.CACHE_MODE = args.cache_mode
-    if args.resume:
-        config.MODEL.RESUME = args.resume
-    if args.accumulation_steps:
-        config.TRAIN.ACCUMULATION_STEPS = args.accumulation_steps
-    if args.use_checkpoint:
-        config.TRAIN.USE_CHECKPOINT = True
-    if args.amp_opt_level:
-        config.AMP_OPT_LEVEL = args.amp_opt_level
-    if args.tag:
-        config.TAG = args.tag
-    if args.eval:
-        config.EVAL_MODE = True
-    if args.throughput:
-        config.THROUGHPUT_MODE = True
-
+def update_config(config):
+    _update_config_from_file(config, 'model/Swin_Uper/config.yaml')
     config.freeze()
 
 
-def get_config(args):
+def get_config():
     """Get a yacs CfgNode object with default values."""
     # Return a clone so that the defaults will not be altered
     # This is for the "local variable" use pattern
     config = _C.clone()
-    update_config(config, args)
+    update_config(config)
 
     return config

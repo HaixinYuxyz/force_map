@@ -45,9 +45,9 @@ class SwinUnet(nn.Module):
                                             patch_norm=config.MODEL.SWIN.PATCH_NORM,
                                             use_checkpoint=config.TRAIN.USE_CHECKPOINT)
 
-    def forward(self, rgb, inf):
-        x = torch.cat((rgb, inf), dim=1)
-        logits = self.swin_unet(x)
+    def forward(self, inf):
+        # x = torch.cat((rgb, inf), dim=1)
+        logits = self.swin_unet(inf)
         out_x = logits[:, 0, :, :].unsqueeze(1)
         out_y = logits[:, 1, :, :].unsqueeze(1)
         out_z = logits[:, 2, :, :].unsqueeze(1)

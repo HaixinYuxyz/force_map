@@ -1,0 +1,56 @@
+MODEL:
+  TYPE: swin
+  NAME: 'handdepthnet'
+  DROP_PATH_RATE: 0.2
+  PRETRAIN_CKPT: "pretrained_model/swin_tiny_patch4_window7_224.pth"
+  RESUME: './output-1/epoch_149.pth'
+  SWIN:
+    FINAL_UPSAMPLE: "expand_first"
+    EMBED_DIM: 96
+    DEPTHS: [ 2, 2, 6, 2 ]
+    DECODER_DEPTHS: [ 2, 2, 2, 1 ]
+    NUM_HEADS: [ 3, 6, 12, 24 ]
+    WINDOW_SIZE: 7
+
+DATA:
+  BATCH_SIZE: 30
+  ZIP_MODE: True
+  CACHE_MODE: 'part'
+  TRAIN_SET_PATH: './data/Hand_Dataset/train'
+  VAL_SET_PATH: './data/Hand_Dataset/val'
+  TEST_SET_PATH: './data/Hand_Dataset/test'
+  IGNORE_TRAIN_OBJ: [ ]
+  IGNORE_VAL_OBJ: [ ]
+  IGNORE_TEST_OBJ: [ ]
+  PIC_RESIZED_W: 224
+  PIC_RESIZED_H: 224
+
+
+TRAIN:
+  TAG: 'SwinDRNet_test_V1_all_data'
+  EPOCHS: 300
+  MILESTONES: [ 100,150,200,250 ]
+  ACCUMULATION_STEPS: 0
+  USE_CHECKPOINT: False
+  BASE_LR: 0.0002
+  SEED: 1234
+  DETERMINISTIC: 1
+  PERCENTAGE_DATA_FOR_TRAIN: 1.
+
+TEST:
+  EVAL_ONLY: False
+  THROUGHPUT_MODE: False
+  PERCENTAGE_DATA_FOR_VAL: 1.
+  PERCENTAGE_DATA_FOR_TEST: 1.
+
+OUTPUT:
+  OUTPUT_DIR: 'results'
+
+
+
+
+
+
+
+
+

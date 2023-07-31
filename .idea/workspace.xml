@@ -2,8 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0032cbe3-1cf3-4628-8545-ffd91dcde357" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/data/finite_element.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data_analyse.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/SwinUnet/UPerNet.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Swin_Uper/CrossAttention.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Swin_Uper/SwinDRNet.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Swin_Uper/SwinTransformer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Swin_Uper/UPerNet.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Swin_Uper/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Swin_Uper/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Swin_Uper/config.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Swin_Uper/swin_tiny_patch4_window7_224_lite.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/percentage_analyze.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inference_forcemap.py" beforeDir="false" afterPath="$PROJECT_DIR$/inference_forcemap.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/SwinUnet/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/SwinUnet/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/SwinUnet/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/SwinUnet/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/SwinUnet/vision_transformer.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/SwinUnet/vision_transformer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/__init__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +54,7 @@
     <setting file="file://$PROJECT_DIR$/main.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://D:/WeChat/WeChat Files/wxid_7x9ow40uxl9x21/FileStorage/File/2023-06/Hand-Eye-Realsense.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/PyCharm2021.3/remote_sources/-188408701/-1555246753/torch/utils/data/dataloader.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/data/data.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/data/data.py" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/PyCharm2021.3/remote_sources/-188408701/-1555246753/numpy/__init__.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/model/Swintransformer_all/train.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/PyCharm2021.3/remote_sources/-188408701/-1555246753/torch/utils/data/_utils/fetch.py" root0="SKIP_INSPECTION" />
@@ -53,17 +72,17 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/model/Fuse_Swinunet_no_cross" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/model/Swin_Uper" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\force_map_new\model\Swin_Uper" />
+      <recent name="E:\force_map_new\model\SwinUnet" />
       <recent name="E:\force_map_new\model\Fuse_Swinunet_no_cross" />
       <recent name="E:\force_map_new\model\Swintransformer_all" />
       <recent name="E:\force_map_new\model\Fuse_Swinunet" />
-      <recent name="E:\force_map_new\model\SwinUnet" />
-      <recent name="E:\force_map_new" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\force_map_new\model\Fuse_Swinunet_no_cross" />
@@ -73,7 +92,7 @@
       <recent name="E:\force_map_new\model\ResNet_FCN" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.data_analyse">
     <configuration name="Hand-Eye-Realsense" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="force_map_new" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -96,6 +115,50 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="data_analyse" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="force_map_new" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_analyse.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="inference_forcemap" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="force_map_new" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/inference_forcemap.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="force_map_new" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -110,50 +173,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="main_2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="force_map_new" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main_2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="main_3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="force_map_new" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main_3.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -186,11 +205,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.data_analyse" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.inference_forcemap" />
         <item itemvalue="Python.Hand-Eye-Realsense" />
         <item itemvalue="Python.try_im" />
-        <item itemvalue="Python.main_2" />
-        <item itemvalue="Python.main_3" />
       </list>
     </recent_temporary>
   </component>
@@ -210,7 +229,14 @@
       <workItem from="1685629972743" duration="1862000" />
       <workItem from="1685799051153" duration="4952000" />
       <workItem from="1686191524640" duration="29841000" />
-      <workItem from="1686310644796" duration="12308000" />
+      <workItem from="1686310644796" duration="22313000" />
+      <workItem from="1687252534643" duration="657000" />
+      <workItem from="1687255499734" duration="8123000" />
+      <workItem from="1688519817961" duration="5638000" />
+      <workItem from="1688632548198" duration="16000000" />
+      <workItem from="1688949602631" duration="60502000" />
+      <workItem from="1690358015112" duration="2643000" />
+      <workItem from="1690472265657" duration="5856000" />
     </task>
     <servers />
   </component>
@@ -233,29 +259,46 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>218</line>
+          <line>203</line>
           <option name="timeStamp" value="88" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/data_analyse.py</url>
+          <line>101</line>
+          <option name="timeStamp" value="116" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/inference_forcemap.py</url>
+          <line>129</line>
+          <option name="timeStamp" value="119" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>315</line>
-          <option name="timeStamp" value="89" />
+          <line>199</line>
+          <option name="timeStamp" value="132" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>148</line>
+          <option name="timeStamp" value="137" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="xxx.max" />
+        <watch expression="delta_dict" />
       </configuration>
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/force_map_new$inference_forcemap.coverage" NAME="inference_forcemap 覆盖结果" MODIFIED="1683797971403" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/force_map_new$inference_forcemap.coverage" NAME="inference_forcemap 覆盖结果" MODIFIED="1689473086500" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/force_map_new$resnet_fcn.coverage" NAME="resnet_fcn 覆盖结果" MODIFIED="1683873912336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/ResNet_FCN" />
+    <SUITE FILE_PATH="coverage/force_map_new$data_analyse.coverage" NAME="data_analyse 覆盖结果" MODIFIED="1690548984853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/force_map_new$grconvnet3.coverage" NAME="grconvnet3 覆盖结果" MODIFIED="1683863792369" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/grconvnet" />
     <SUITE FILE_PATH="coverage/force_map_new$main_2.coverage" NAME="main_2 覆盖结果" MODIFIED="1684827532348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/force_map_new$try_im.coverage" NAME="try_im 覆盖结果" MODIFIED="1684893227425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/force_map_new$main.coverage" NAME="main 覆盖结果" MODIFIED="1686363000077" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/force_map_new$main.coverage" NAME="main 覆盖结果" MODIFIED="1690472284675" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/force_map_new$main_3.coverage" NAME="main_3 覆盖结果" MODIFIED="1683874764061" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/force_map_new$Hand_Eye_Realsense.coverage" NAME="Hand-Eye-Realsense 覆盖结果" MODIFIED="1686239627357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/WeChat/WeChat Files/wxid_7x9ow40uxl9x21/FileStorage/File/2023-06" />
     <SUITE FILE_PATH="coverage/force_map_new$UNet.coverage" NAME="UNet 覆盖结果" MODIFIED="1683799448681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/UNet" />
