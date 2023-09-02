@@ -61,14 +61,16 @@ class SwinDRNet(nn.Module):
         input_org_shape = depth.shape[2:]
         depth_feature = self.backbone_xyz_branch(depth)
 
-        logits = self.decode_head_depth_restoration(depth_feature, input_org_shape)
-        xyz_map = self.decode_head_confidence(depth_feature, input_org_shape)
-        xyz_output = self.liner2(self.liner1(self.conv1(xyz_map).view(-1, 224 * 224)))
-        out_x = logits[:, 0, :, :].unsqueeze(1)
-        out_y = logits[:, 1, :, :].unsqueeze(1)
-        out_z = logits[:, 2, :, :].unsqueeze(1)
+        output_map = self.decode_head_depth_restoration(depth_feature, input_org_shape)
+        output_max_map = self.decode_head_confidence(depth_feature, input_org_shape)
+        out_x = output_map[:, 0, :, :].unsqueeze(1)
+        out_y = output_map[:, 1, :, :].unsqueeze(1)
+        out_z = output_map[:, 2, :, :].unsqueeze(1)
+        out_x_max = output_max_map[:, 0, :, :].unsqueeze(1)
+        out_y_max = output_max_map[:, 1, :, :].unsqueeze(1)
+        out_z_max = output_max_map[:, 2, :, :].unsqueeze(1)
 
-        return (out_x, out_y, out_z), xyz_output
+        return (out_x, out_y, out_z), (out_x_max, out_y_max, out_z_max)
 
     def init_weights(self, pretrained=None):
         """Initialize the weights in backbone and heads.

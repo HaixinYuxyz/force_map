@@ -46,12 +46,14 @@ class SwinUnet(nn.Module):
                                             use_checkpoint=config.TRAIN.USE_CHECKPOINT)
 
     def forward(self, inf):
-        # x = torch.cat((rgb, inf), dim=1)
         logits = self.swin_unet(inf)
         out_x = logits[:, 0, :, :].unsqueeze(1)
         out_y = logits[:, 1, :, :].unsqueeze(1)
         out_z = logits[:, 2, :, :].unsqueeze(1)
-        return (out_x, out_y, out_z)
+        out_max_x = logits[:, 3, :, :].unsqueeze(1)
+        out_max_y = logits[:, 4, :, :].unsqueeze(1)
+        out_max_z = logits[:, 5, :, :].unsqueeze(1)
+        return (out_x, out_y, out_z), (out_max_x, out_max_y, out_max_z)
 
     def load_from(self, config):
         pretrained_path = config.MODEL.PRETRAIN_CKPT

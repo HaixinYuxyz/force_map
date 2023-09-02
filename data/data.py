@@ -375,19 +375,18 @@ class ForceData(Dataset):
 
         inf = cv2.resize(cv2.imread(self.inf[index]), (224, 224))
         rgb = cv2.resize(cv2.imread(self.rgb[index]), (224, 224))
-        x_force = cv2.resize(x_force, (224, 224))
-        y_force = cv2.resize(y_force, (224, 224))
-        z_force = cv2.resize(z_force, (224, 224))
+        x_force_resize = cv2.resize(x_force, (224, 224))
+        y_force_resize = cv2.resize(y_force, (224, 224))
+        z_force_resize = cv2.resize(z_force, (224, 224))
         mask = cv2.resize(mask, (224, 224))
 
-        # mask_gauss = self.gauss_transformation(mask, center)
+        x_force = (x_force_resize - self.force_min_x) / (self.force_max_x - self.force_min_x)
+        y_force = (y_force_resize - self.force_min_y) / (self.force_max_y - self.force_min_y)
+        z_force = (z_force_resize - self.force_min_z) / (self.force_max_z - self.force_min_z)
 
-        # x_force = mask * self.force[index][0]
-        x_force = (x_force - self.force_min_x) / (self.force_max_x - self.force_min_x)
-        # y_force = mask * self.force[index][1]
-        y_force = (y_force - self.force_min_y) / (self.force_max_y - self.force_min_y)
-        # z_force = mask * (self.force[index][2])
-        z_force = (z_force - self.force_min_z) / (self.force_max_z - self.force_min_z)
+        x_force_max = mask * x_force.max()
+        y_force_max = mask * y_force.max()
+        z_force_max = mask * z_force.max()
 
         inf = transforms.ToTensor()(np.ascontiguousarray(inf))
         rgb = transforms.ToTensor()(np.ascontiguousarray(rgb))
@@ -395,7 +394,9 @@ class ForceData(Dataset):
         force_map_y = transforms.ToTensor()(np.ascontiguousarray(y_force))
         force_map_z = transforms.ToTensor()(np.ascontiguousarray(z_force))
         mask = transforms.ToTensor()(np.ascontiguousarray(mask))
-        # mask_gauss = transforms.ToTensor()(np.ascontiguousarray(mask_gauss))
+        x_force_max = transforms.ToTensor()(np.ascontiguousarray(x_force_max))
+        y_force_max = transforms.ToTensor()(np.ascontiguousarray(y_force_max))
+        z_force_max = transforms.ToTensor()(np.ascontiguousarray(z_force_max))
 
         return rgb.to(torch.float32), inf.to(torch.float32), (force_map_x.to(torch.float32), force_map_y.to(torch.float32), force_map_z.to(torch.float32)), mask.to(
             torch.float32), (self.force[index][0], self.force[index][1], self.force[index][2]), self.dataset_type, [self.force_max_x,
@@ -404,7 +405,8 @@ class ForceData(Dataset):
                                                                                                                     self.force_min_y,
                                                                                                                     self.force_max_z,
                                                                                                                     self.force_min_z], \
-               torch.tensor([torch.max(force_map_x), torch.max(force_map_y), torch.max(force_map_y)])
+               torch.tensor([np.max(np.abs(x_force_resize)), np.max(np.abs(y_force_resize)), np.max(np.abs(z_force_resize))]), \
+               (x_force_max.to(torch.float32), y_force_max.to(torch.float32), z_force_max.to(torch.float32))
 
     def __len__(self):
         return len(self.inf)

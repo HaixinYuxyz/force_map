@@ -10,7 +10,7 @@ from .config import get_config
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--num_classes', type=int,
-                    default=3, help='output channel of network')
+                    default=6, help='output channel of network')
 parser.add_argument('--max_iterations', type=int,
                     default=30000, help='maximum epoch number to train')
 parser.add_argument('--max_epochs', type=int,

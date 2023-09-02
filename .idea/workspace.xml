@@ -2,27 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0032cbe3-1cf3-4628-8545-ffd91dcde357" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/data/finite_element.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_analyse.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/SwinUnet/UPerNet.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/Swin_Uper/CrossAttention.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/Swin_Uper/SwinDRNet.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/Swin_Uper/SwinTransformer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/Swin_Uper/UPerNet.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/Swin_Uper/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/Swin_Uper/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/Swin_Uper/config.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/Swin_Uper/swin_tiny_patch4_window7_224_lite.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/percentage_analyze.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inference_forcemap.py" beforeDir="false" afterPath="$PROJECT_DIR$/inference_forcemap.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/SwinUnet/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/SwinUnet/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/SwinUnet/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/SwinUnet/train.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/SwinUnet/vision_transformer.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/SwinUnet/vision_transformer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Swin_Uper/SwinDRNet.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/Swin_Uper/SwinDRNet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/percentage_analyze.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/percentage_analyze.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +79,7 @@
       <recent name="E:\force_map_new\model\ResNet_FCN" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.data_analyse">
+  <component name="RunManager" selected="Python.inference_forcemap">
     <configuration name="Hand-Eye-Realsense" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="force_map_new" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -205,9 +192,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.data_analyse" />
-        <item itemvalue="Python.main" />
         <item itemvalue="Python.inference_forcemap" />
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.data_analyse" />
         <item itemvalue="Python.Hand-Eye-Realsense" />
         <item itemvalue="Python.try_im" />
       </list>
@@ -237,6 +224,8 @@
       <workItem from="1688949602631" duration="60502000" />
       <workItem from="1690358015112" duration="2643000" />
       <workItem from="1690472265657" duration="5856000" />
+      <workItem from="1692753394384" duration="605000" />
+      <workItem from="1692862506547" duration="41253000" />
     </task>
     <servers />
   </component>
@@ -259,7 +248,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>203</line>
+          <line>219</line>
           <option name="timeStamp" value="88" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -268,19 +257,9 @@
           <option name="timeStamp" value="116" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/inference_forcemap.py</url>
-          <line>129</line>
-          <option name="timeStamp" value="119" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>199</line>
-          <option name="timeStamp" value="132" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>148</line>
-          <option name="timeStamp" value="137" />
+          <url>file://$PROJECT_DIR$/utils/percentage_analyze.py</url>
+          <line>5</line>
+          <option name="timeStamp" value="150" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -292,13 +271,13 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/force_map_new$inference_forcemap.coverage" NAME="inference_forcemap 覆盖结果" MODIFIED="1689473086500" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/force_map_new$inference_forcemap.coverage" NAME="inference_forcemap 覆盖结果" MODIFIED="1693537479544" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/force_map_new$resnet_fcn.coverage" NAME="resnet_fcn 覆盖结果" MODIFIED="1683873912336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/ResNet_FCN" />
     <SUITE FILE_PATH="coverage/force_map_new$data_analyse.coverage" NAME="data_analyse 覆盖结果" MODIFIED="1690548984853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/force_map_new$grconvnet3.coverage" NAME="grconvnet3 覆盖结果" MODIFIED="1683863792369" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/grconvnet" />
     <SUITE FILE_PATH="coverage/force_map_new$main_2.coverage" NAME="main_2 覆盖结果" MODIFIED="1684827532348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/force_map_new$try_im.coverage" NAME="try_im 覆盖结果" MODIFIED="1684893227425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/force_map_new$main.coverage" NAME="main 覆盖结果" MODIFIED="1690472284675" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/force_map_new$main.coverage" NAME="main 覆盖结果" MODIFIED="1693208146896" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/force_map_new$main_3.coverage" NAME="main_3 覆盖结果" MODIFIED="1683874764061" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/force_map_new$Hand_Eye_Realsense.coverage" NAME="Hand-Eye-Realsense 覆盖结果" MODIFIED="1686239627357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/WeChat/WeChat Files/wxid_7x9ow40uxl9x21/FileStorage/File/2023-06" />
     <SUITE FILE_PATH="coverage/force_map_new$UNet.coverage" NAME="UNet 覆盖结果" MODIFIED="1683799448681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/UNet" />

@@ -9,6 +9,9 @@ import torch.backends.cudnn as cudnn
 import random
 from tqdm import tqdm
 from model import get_network
+from main import split_dataset
+from utils.percentage_analyze import percentage_analyze
+from main import sum_mean_acc
 
 
 # mpl.use('TkAgg')
@@ -93,9 +96,9 @@ if __name__ == "__main__":
 
     os.environ["CUDA_VISIBLE_DEVICES"] = "1"
     data_path = "dataset/force_map_finite_element_7_9/"
-    checkout_path = "/home/shoujie/Program/force_map_new/output/23_07_10_16_55_swinunet_Guass/99.pth"
+    checkout_path = "/home/shoujie/Program/force_map_new/output/23_08_29_20_59_swinunet_Guass/99.pth"
     checkpoint = torch.load(checkout_path)
-    logger = log_creater('/home/shoujie/Program/force_map_new/output/23_07_10_16_55_swinunet_Guass/')
+    logger = log_creater("/home/shoujie/Program/force_map_new/output/23_08_28_15_36_swinunet_Guass")
 
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     net_name = 'swinunet'  # transforce
@@ -103,81 +106,37 @@ if __name__ == "__main__":
     net.load_state_dict(checkpoint)
     net.eval()
     net.to(device)
+    batch_size = 48
+    img_shape = (256, 256)
+    epoch = 100
+    lr = 0.001
+    lr_min = 0.00001
+    num_workers = 0
+    train_dataset_per = 1
+    val_dataset_per = 1
+    net_name = 'swinunet'  # transforce
 
     dataset = ForceData(data_path, 'new')
 
-    indices = list(range(len(dataset)))
-    split = int(np.floor(0.8 * len(dataset)))
-    np.random.shuffle(indices)
-    train_indices, val_indices = indices[:split], indices[split:]
-    plot_error_x = []
-    plot_error_y = []
-    plot_error_z = []
-    idx_list = []
-    # val_indices = val_indices[0:20]
-    for id, num in tqdm(enumerate(val_indices)):
-        rgb, inf, targets, mask, real_force, d_type, max_min_force = dataset[num]
-        mask = mask.to(device)
-        rgb = rgb.unsqueeze(0)
-        rgb = rgb.to(device)
-        inf = inf.unsqueeze(0)
-        inf = inf.to(device)
-        mask = mask.to(device)
-        for label in targets:
-            label.to(device)
-
-        output = net(inf)
-        print('out')
-
-    #     error_cal_x = torch.abs((torch.sum(mask * labels[0].to(device)) / torch.sum(mask)) - (torch.sum(mask * output[0]) / torch.sum(mask))) * (1.1671 + 1.4656)
-    #     error_cal_y = torch.abs((torch.sum(mask * labels[1].to(device)) / torch.sum(mask)) - (torch.sum(mask * output[1]) / torch.sum(mask))) * (0.9182 + 1.6964)
-    #     error_cal_z = torch.abs((torch.sum(mask * labels[2].to(device)) / torch.sum(mask)) - (torch.sum(mask * output[2]) / torch.sum(mask))) * (4.0909 - 1.5137)
-    #
-    #     real_x, real_y, real_z = real_force
-    #
-    #     pred_x = (torch.sum(mask * output[0]) / torch.sum(mask)) * (1.1671 + 1.4656) - 1.4656
-    #     pred_y = (torch.sum(mask * output[1]) / torch.sum(mask)) * (0.9182 + 1.6964) - 0.9182
-    #     pred_z = -((torch.sum(mask * output[2]) / torch.sum(mask)) * (4.0909 - 1.5137) + 1.5137)
-    #
-    #     logger.info('Real X: {} Pred X: {}'.format(real_x, pred_x))
-    #     logger.info('Real Y: {} Pred Y: {}'.format(real_y, pred_y))
-    #     logger.info('Real Z: {} Pred Z: {}'.format(real_z, pred_z))
-    #
-    #     error_x = torch.abs(real_x - pred_x)
-    #     error_y = torch.abs(real_y - pred_y)
-    #     error_z = torch.abs(real_z - pred_z)
-    #
-    #     plot_error_x.append(error_x.item())
-    #     plot_error_y.append(error_y.item())
-    #     plot_error_z.append(error_z.item())
-    #     idx_list.append(id)
-    #
-    # # vis_forcemap(inf, inf, labels, mask, output)
-    # plt.scatter(idx_list, plot_error_x)
-    # plt.grid(True)
-    # plt.axhline(y=np.mean(np.array(plot_error_x)), ls=":", c="red")  # 添加水平直线
-    # # plt.text(len(idx_list), np.mean(np.array(plot_error_x)), 'Mean X error: {}'.format(np.mean(np.array(plot_error_x))))
-    # num_005x = np.sum(np.array(plot_error_x) <= 0.05)
-    # num_01x = np.sum(np.array(plot_error_x) <= 0.1)
-    # plt.title('Error pred X. In 0.05: {:.4f}. In 0.1: {:.4f}. Mean error: {:.4f}'.format(num_005x / len(idx_list), num_01x / len(idx_list), np.mean(np.array(plot_error_x))))
-    # plt.savefig('error_x.png')
-    # plt.close()
-    #
-    # plt.scatter(idx_list, plot_error_y)
-    # plt.grid(True)
-    # plt.axhline(y=np.mean(np.array(plot_error_y)), ls=":", c="red")
-    # # plt.text(len(idx_list), np.mean(np.array(plot_error_y)), 'Mean Y error: {}'.format(np.mean(np.array(plot_error_y))))
-    # num_005y = np.sum(np.array(plot_error_y) <= 0.05)
-    # num_01y = np.sum(np.array(plot_error_y) <= 0.1)
-    # plt.title('Error pred Y. In 0.05: {:.4f}. In 0.1: {:.4f}. Mean error: {:.4f}'.format(num_005y / len(idx_list), num_01y / len(idx_list), np.mean(np.array(plot_error_y))))
-    # plt.savefig('error_y.png')
-    # plt.close()
-    #
-    # plt.scatter(idx_list, plot_error_z)
-    # plt.grid(True)
-    # plt.axhline(y=np.mean(np.array(plot_error_z)), ls=":", c="red")
-    # # plt.text(len(idx_list), np.mean(np.array(plot_error_z)), 'Mean Z error: {}'.format(np.mean(np.array(plot_error_z))))
-    # num_005z = np.sum(np.array(plot_error_z) <= 0.05)
-    # num_01z = np.sum(np.array(plot_error_z) <= 0.1)
-    # plt.title('Error pred Z. In 0.05: {:.4f}. In 0.1: {:.4f}. Mean error: {:.4f}'.format(num_005z / len(idx_list), num_01z / len(idx_list), np.mean(np.array(plot_error_z))))
-    # plt.savefig('error_z.png')
+    train_dataloader, val_dataloader = split_dataset(dataset, 0.8, batch_size, num_workers, train_dataset_per, val_dataset_per)
+    all_error = 0
+    # for percent in [0.00005, 0.0001, 0.0002, 0.0003, 0.0004, 0.0005, 0.0006, 0.0007, 0.0008, 0.0009, 0.001, 0.002]:
+    x_list = []
+    y_list = []
+    z_list = []
+    with torch.no_grad():
+        for idx, batch in tqdm(enumerate(val_dataloader), desc='valling'):
+            rgb, inf, targets, mask, real_force, d_type, max_min_force, max_xyz, force_maxs = batch
+            real_force = [force.to(device) for force in real_force]
+            max_xyz = max_xyz.to(device)
+            max_min_force = [max_min.to(device) for max_min in max_min_force]
+            inf = inf.to(device)
+            mask = mask.to(device)
+            labels = [target.to(device) for target in targets]
+            output_map = net(inf)
+            orin_map, max_map = output_map
+            error_x, error_y, error_z = sum_mean_acc(max_map, force_maxs, mask, max_min_force)
+            x_list.append(error_x.item())
+            y_list.append(error_y.item())
+            z_list.append(error_z.item())
+    print(np.mean(np.array(x_list)), np.mean(np.array(y_list)), np.mean(np.array(x_list)))
